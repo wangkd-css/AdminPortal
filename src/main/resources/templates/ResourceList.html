@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8">
+<title>リソース</title>
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/ace-fonts.css" />
+<link rel="stylesheet" href="css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+<script src="js/ace-extra.js"></script>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/template-web.js"></script>
+<script type="text/javascript" src="js/Resource.js"></script>
+<script type="text/javascript" src="js/url.js"></script>
+</head>
+<body onload="Resource()">
+	<div id="navbar" class="navbar navbar-default">
+		<div class="navbar-container" id="navbar-container">
+			<div class="navbar-header pull-left">
+				<a href="#" class="navbar-brand">
+					<small>
+						<img src="img/Login.JPG"/>
+						リソース
+					</small>
+				</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="updateResource" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+					</button>
+					<h4 class="modal-title" id="ResourceTitle">リソース更新</h4>
+				</div>
+				
+				<div class="modal-body">
+					<table>
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">サーバ番号</span></td>
+							<td><input type="text" id="serverID" placeholder="serverID" class="form-control" readonly="readonly"/></td>
+						</tr>
+					</div>
+					<div class="input-group">
+						<tr>
+							<td><label class="input_tip">リソース番号</label></td>
+							<td><input style="width: 400px" type="text" id="resourceID" placeholder="resourceID" class="form-control" readonly="readonly" /></td>
+					    </tr>
+					</div>
+
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">リソース</span></td>
+							<td><input maxlength="50"  type="text" id="resourceName" placeholder="ResourceName" class="form-control" /></td>
+						</tr>
+					</div>	
+					<div class="input-group">
+						<tr>
+												</div>
+					</table>
+				</div>
+				
+				<div class="modal-footer">
+					<button class="btn btn-info" type="submit" onclick="updateResource()">
+						Submit
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="modal fade" id="deleteResource" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<h4 class="modal-title">このリソースを削除しますか?</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"
+						onclick="deleteResource()">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group" style="margin-left:200px">
+		<button class="btn btn-app btn-primary no-radius" onclick="window.location.href = 'addResource'">
+			+
+		</button>
+		<button class="btn btn-app btn-primary no-radius" onclick="window.location.href = 'index'">
+			<i class="ace-icon fa fa-reply icon-only" style="line-height:30.6px"></i>
+		</button>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+		<div id="Resourcecontent">
+			<script id="Resourcelist" type="text/html">
+				<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>サーバ番号</th>
+							<th>リソース番号</th>
+							<th>リソース</th>
+						 	<th style="width: 80px"></th>
+
+						</tr>
+					</thead>
+					
+					<tbody>
+						{{each $data}}
+						<tr>
+							<td>{{$value.serverID}}</td>
+							<td>{{$value.resourceID}}</td>
+							<td>{{$value.resourceName}}</td>
+							<td>
+								<button style="float:left;width:30px;height:30px;" class="btn btn-warning btn-xs" onclick="showUpdateResource('{{$value.resourceID}}')">
+									<i class="ace-icon fa fa-pencil-square-o bigger-230" style="font-size:23px !important;"></i>
+								</button>
+								<button style="float:right;width:30px;height:30px;background-color:#ff0000 !important;border-color:#ff0000;" class="btn btn-warning btn-xs deleteButton" onclick="showDeleteResourceDialog('{{$value.resourceID}}')">
+									<i class="ace-icon fa fa-trash-o fa-2x icon-only"></i>
+								</button>
+							</td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</script>
+		</div>
+		</div>
+	</div>
+</body>

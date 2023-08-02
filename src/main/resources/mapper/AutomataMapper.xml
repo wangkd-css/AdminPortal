@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rmc.dao.AutomataDao">
+
+	<!-- insert -->
+	<insert id="addAuto">
+		insert into
+		Automata(AutomataID,AutomataName,AutomataType,BusinessID,MaxTime,CreateTime,Creater,UpdateTime,Updater)
+		values(#{automataID},#{automataName},#{automataType},#{businessID},#{maxTime},#{createTime},#{creater},#{updateTime},#{updater})
+	</insert>
+	
+	<!-- select -->
+	<select id="getAutoList" resultType="com.rmc.model.AutomataModel">
+		select * from Automata
+	</select>
+	
+	<!-- delete -->
+	<delete id="deleteAuto">
+		delete from Automata where AutomataID=#{automataID}
+	</delete>
+	
+	<!-- selectAuto -->
+	<select id="getAuto" resultType="com.rmc.model.AutomataModel">
+		select * from Automata where AutomataID=#{automataID}
+	</select>
+	
+	<!-- update -->
+	<update id="updateAuto">
+		update Automata set
+		AutomataName=#{automataName},AutomataType=#{automataType},BusinessID=#{businessID},MaxTime=#{maxTime},UpdateTime=#{updateTime},Updater=#{updater}
+		where
+		AutomataID=#{automataID}
+	</update>
+</mapper>

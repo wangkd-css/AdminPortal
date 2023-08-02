@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rmc.dao.ClientDao">
+
+	<!-- insert -->
+	<insert id="addClient">
+		insert into
+		ClientTable(CustomerID,CustomerName,CreateTime,Creater,UpdateTime,Updater)
+		values(#{customerID},#{customerName},#{createTime},#{creater},#{updateTime},#{updater})
+	</insert>
+	
+	<!-- select -->
+	<select id="getClientList" resultType="com.rmc.model.ClientModel">
+		select * from ClientTable
+	</select>
+	
+	<!-- delete -->
+	<delete id="deleteClient">
+		delete from ClientTable where CustomerID=#{customerID}
+	</delete>
+	
+	<!-- selectAuto -->
+	<select id="getClient" resultType="com.rmc.model.ClientModel">
+		select * from ClientTable where CustomerID=#{customerID}
+	</select>
+	
+	<!-- update -->
+	<update id="updateClient">
+		update ClientTable set
+			CustomerID=#{customerID},
+			CustomerName=#{customerName},
+			UpdateTime=#{updateTime},
+			Updater=#{updater}
+		where
+			CustomerID=#{customerID}
+	</update>
+</mapper>

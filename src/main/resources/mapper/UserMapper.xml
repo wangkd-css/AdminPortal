@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.rmc.dao.UserDao">
+	
+	<!--获得用户对象通过id -->
+	<select id="getUserById" resultType="com.rmc.model.UserModel">
+		select * from AoccUser where
+		UserId=#{userId}
+	</select>
+	
+	<!--获得所有用户 -->
+	<select id="getUserList" resultType="com.rmc.model.UserModel">
+		select * from AoccUser
+	</select>
+
+	<!-- insert -->
+	<insert id="addUser">
+		insert into
+		AoccUser(UserId,Password,permission)
+		values(#{userId},#{password},#{permission})
+	</insert>
+
+	<!-- delete -->
+	<delete id="deleteUser">
+		delete from AoccUser where UserId=#{userId}
+	</delete>
+
+	<!-- update -->
+	<update id="updateUser">
+		update AoccUser set
+		permission=#{permission}
+		where
+		UserId=#{userId}
+	</update>
+	
+	<!-- update -->
+	<update id="changePassword">
+		update AoccUser set
+		Password=#{password}
+		where
+		UserId=#{userId}
+	</update>
+	
+</mapper>

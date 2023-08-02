@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8">
+<title>新規ユーザー</title>
+<meta name="description" content="Common form elements and layouts">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/jquery-ui.custom.css">
+<link rel="stylesheet" href="css/chosen.css" />
+<link rel="stylesheet" href="css/datepicker.css" />
+<link rel="stylesheet" href="css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="css/daterangepicker.css" />
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" href="css/colorpicker.css" />
+<link rel="stylesheet" href="css/ace-fonts.css" />
+<link rel="stylesheet" href="css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/url.js"></script>
+<script type="text/javascript" src="js/user.js"></script>
+</head>
+<body>
+	<div id="navbar" class="navbar navbar-default">
+		<div class="navbar-container" id="navbar-container">
+			<div class="navbar-header pull-left">
+				<a href="#" class="navbar-brand">
+					<small>
+						<img src="img/Login.JPG"/>
+						新規ユーザー
+					</small>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="main-container"  id="main-container" style="margin-top:50px" >	
+		<form class="form-horizontal" role="form" id="userForm" method="post" enctype="multipart/form-data" onsubmit="return false">
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="userId" style="text-align:left">ユーザー名</label>
+	
+				<div class="col-sm-9">
+					<input type="text"  maxlength="50" id="userId" placeholder="UserName" class="col-xs-10 col-sm-5" style="margin-left:0"/>
+				</div>
+			</div>
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="permission" style="text-align:left">権限</label>
+	
+				<select id="permission" style="margin-left:10px" >
+					<option value=""></option>
+					<option value="admin">admin</option>
+					<option value="user">user</option>
+				</select>
+			</div>
+			<div class="clearfix form-actions">
+				<div class="col-md-offset-3 col-md-9">
+					<button class="btn btn-info" type="submit" onclick="addUser()">
+						Submit
+					</button>
+					&nbsp; &nbsp; &nbsp;
+					<button class="btn" onclick="window.location.href = 'returnUserList'">
+						Back
+					</button>
+				</div>
+			</div>
+			<div class="hr hr-24"></div>
+		</form>
+	</div>
+</body>

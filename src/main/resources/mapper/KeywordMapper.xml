@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rmc.dao.KeyWordDao">
+
+	<!-- insert -->
+	<insert id="addKeyWord">
+		insert into
+		Keyword(KeywordID,AutomataID,Keyword,CreateTime,Creater,UpdateTime,Updater)
+		values(#{keywordId},#{automataId},#{keyword},#{createTime},#{creater},#{updateTime},#{updater})
+	</insert>
+	
+	<!-- select -->
+	<select id="getKeyWordList" resultType="com.rmc.model.KeyWordModel">
+		select * from Keyword
+	</select>
+	
+	<!-- delete -->
+	<delete id="deleteKeyWord">
+		delete from Keyword where keywordId=#{keywordId}
+	</delete>
+	
+	<!-- selectAuto -->
+	<select id="getKeyWord" resultType="com.rmc.model.KeyWordModel">
+		select * from Keyword where KeywordID=#{keywordId}
+	</select>
+	
+	<!-- update -->
+	<update id="updateKeyWord">
+		update Keyword set
+			KeywordID=#{keywordId},
+			AutomataID=#{automataId},
+			Keyword=#{keyword},
+			UpdateTime=#{updateTime},
+			Updater=#{updater}
+		where
+			KeywordID=#{keywordId}
+	</update>
+</mapper>

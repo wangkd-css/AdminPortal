@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rmc.dao.ServerDao">
+
+	<!-- insert -->
+	<insert id="addServer">
+		insert into
+		ServerTable(ServerID,ServerIP,CustomerID,ServerName,UserName,passWord,CreateTime,Creater,UpdateTime,Updater,serverDriver,serverUrl)
+		values(#{serverID},#{serverIP},#{customerID},#{serverName},#{userName},#{passWord},#{createTime},#{creater},#{updateTime},#{updater},#{serverDriver},#{serverUrl})
+	</insert>
+	
+	<!-- select -->
+	<select id="getServerList" resultType="com.rmc.model.ServerModel">
+		select * from ServerTable
+	</select>
+	
+	<!-- delete -->
+	<delete id="deleteServer">
+		delete from ServerTable where ServerID=#{serverID}
+	</delete>
+	
+	<!-- selectAuto -->
+	<select id="getServer" resultType="com.rmc.model.ServerModel">
+		select * from ServerTable where ServerID=#{serverID}
+	</select>
+	
+	<!-- update -->
+	<update id="updateServer">
+		update ServerTable set
+			ServerID=#{serverID},
+			ServerIP=#{serverIP},
+			CustomerID=#{customerID},
+			ServerName=#{serverName},
+			UserName=#{userName},
+			PassWord=#{passWord},
+			UpdateTime=#{updateTime},
+			Updater=#{updater},
+			ServerDriver=#{serverDriver},
+			ServerUrl=#{serverUrl}
+		where
+			ServerID=#{serverID}
+	</update>
+</mapper>

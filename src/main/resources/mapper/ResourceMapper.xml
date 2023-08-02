@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rmc.dao.ResourceDao">
+
+	<!-- insert -->
+	<insert id="addResource">
+		insert into
+		Resource(ServerID,ResourceID,ResourceName)
+		values(#{serverID},#{resourceID},#{resourceName})
+	</insert>
+	
+	<!-- select -->
+	<select id="getResourceList" resultType="com.rmc.model.ResourceModel">
+		select * from Resource
+	</select>
+	
+	<!-- delete -->
+	<delete id="deleteResource">
+		delete from Resource where ResourceId=#{resourceID}
+	</delete>
+	
+	<!-- selectAuto -->
+	<select id="getResource" resultType="com.rmc.model.ResourceModel">
+		select * from Resource where ResourceID=#{resourceID}
+	</select>
+	
+	<!-- update -->
+	<update id="updateResource">
+		update Resource set
+			ServerID=#{serverID},
+			ResourceID=#{resourceID},
+			ResourceName=#{resourceName}
+		where
+			ResourceID=#{resourceID}
+	</update>
+</mapper>

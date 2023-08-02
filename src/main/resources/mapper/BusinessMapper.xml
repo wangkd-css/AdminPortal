@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rmc.dao.BusinessDao">
+
+	<!-- insert -->
+	<insert id="addBusiness">
+		insert into
+		BusinessTable(CustomerID,BusinessID,businessName,businessType,CreateTime,Creater,UpdateTime,Updater)
+		values(#{customerID},#{businessID},#{businessName},#{businessType},#{createTime},#{creater},#{updateTime},#{updater})
+	</insert>
+	
+	<!-- select -->
+	<select id="getBusinessList" resultType="com.rmc.model.BusinessModel">
+		select * from BusinessTable
+	</select>
+	
+	<!-- delete -->
+	<delete id="deleteBusiness">
+		delete from BusinessTable where BusinessID=#{BusinessID}
+	</delete>
+	
+	<!-- selectAuto -->
+	<select id="getBusiness" resultType="com.rmc.model.BusinessModel">
+		select * from BusinessTable where BusinessID=#{BusinessID}
+	</select>
+	
+	<!-- update -->
+	<update id="updateBusiness">
+		update BusinessTable set
+			CustomerID=#{customerID},
+			BusinessID=#{businessID},
+			BusinessName=#{businessName},
+			BusinessType=#{businessType},
+			UpdateTime=#{updateTime},
+			Updater=#{updater}
+		where
+			BusinessID=#{businessID}
+	</update>
+</mapper>

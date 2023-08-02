@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8">
+<title>スケジュール</title>
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/ace-fonts.css" />
+<link rel="stylesheet" href="css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+<script src="js/ace-extra.js"></script>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/template-web.js"></script>
+<script src="js/jquery/jquery-ui.custom.js"></script>
+<script src="js/jquery/jquery.ui.touch-punch.js"></script>
+<script src="js/jquery/chosen.jquery.js"></script>
+<script src="js/date-time/bootstrap-datepicker.js"></script>
+<script src="js/date-time/bootstrap-timepicker.js"></script>
+<script src="js/date-time/moment.js"></script>
+<script src="js/date-time/daterangepicker.js"></script>
+<script src="js/date-time/bootstrap-datetimepicker.js"></script>
+<script src="js/jquery/jquery.knob.js"></script>
+<script src="js/jquery/jquery.autosize.js"></script>
+<script src="js/jquery/jquery.inputlimiter.1.3.1.js"></script>
+<script src="js/jquery/jquery.maskedinput.js"></script>
+<script src="js/bootstrap-tag.js"></script>
+<script type="text/javascript" src="js/url.js"></script>
+<script type="text/javascript" src="js/schedule.js"></script>
+</head>
+<body onload="scheduleList()">
+	<div id="navbar" class="navbar navbar-default">
+		<div class="navbar-container" id="navbar-container">
+			<div class="navbar-header pull-left">
+				<a href="#" class="navbar-brand">
+					<small>
+						<img src="img/Login.JPG"/>
+						スケジュール
+					</small>
+				</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="updateSchedule" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+					</button>
+					<h4 class="modal-title" id="scheduleTitle">スケジュール更新</h4>
+				</div>
+				
+				<div class="modal-body">
+					<table>
+					<div class="input-group">
+						<tr>
+							<td><label class="input_tip">ジョブ番号</label></td>
+							<td><input style="width: 400px" type="text" id="jobID" placeholder="JobID" class="form-control" readonly="readonly" />
+							</td>
+					    </tr>
+					</div>
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">頻度</span></td>
+							<td>
+								<select id="runRate" >
+									<option value=""></option>
+									<option value="0">每分</option>
+									<option value="1">毎時間</option>
+									<option value="2">毎日</option>
+									<option value="3">毎週</option>
+									<option value="4">毎月</option>
+									<option value="5">毎年</option>
+									<option value="6">一次</option>
+								</select>
+							</td>
+						</tr>
+					</div>
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">メトリック</span></td>
+							<td><input type="text" id="timeMeasurement" placeholder="timeMeasurement" class="form-control"/></td>
+						</tr>
+					</div>
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">タイムゾーン</span></td>
+							<td><input type="text" maxlength="10" id="timeZone" placeholder="TimeZone" class="form-control"/></td>
+						</tr>
+					</div>
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">開始時間</span></td>
+							<td><input type="text"  id="startTime" placeholder="startTime" class="form-control"/></td>
+						</tr>
+					</div>
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">終了時間</span></td>
+							<td><input type="text"  id="endTime" placeholder="endTime" class="form-control"/></td>
+						</tr>
+					</div>
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">リフレッシュ(s)</span></td>
+							<td><input type="text"  id="refresh" placeholder="refresh" class="form-control"/></td>
+						</tr>
+					</div>
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">Active</span></td>
+							<td>
+								<select id="inActiveFlg" >
+									<option value=""></option>
+									<option value="0">Active</option>
+									<option value="1">InActive</option>
+								</select>
+							</td>
+						</tr>
+					</div>
+					</table>
+				</div>
+				
+				<div class="modal-footer">
+					<button class="btn btn-info" type="submit" onclick="updateSchedule()">
+						Submit
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="modal fade" id="deleteSchedule" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<h4 class="modal-title">このスケジュールを削除しますか?</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"
+						onclick="deleteSchedule()">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group" style="margin-left:200px">
+		<button class="btn btn-app btn-primary no-radius" onclick="window.location.href = 'addSchedule'">
+			+
+		</button>
+		<button class="btn btn-app btn-primary no-radius" onclick="window.location.href = 'index'">
+			<i class="ace-icon fa fa-reply icon-only" style="line-height:30.6px"></i>
+		</button>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+		<div id="schedule__content">
+			<script id="schedule_list" type="text/html">
+				<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>ジョブ番号</th>
+							<th>頻度</th>
+							<th>メトリック</th>
+							<th>タイムゾーン</th>
+							<th>開始時間</th>
+							<th>終了時間</th>
+							<th>リフレッシュ(s)</th>
+							<th>Active</th>
+							<th>作成時間</th>
+							<th>作成者</th>
+							<th>更新時間</th>
+							<th>更新者</th>
+							<th style="width: 80px"></th>
+
+						</tr>
+					</thead>
+					
+					<tbody>
+						{{each $data}}
+						<tr>
+							<td>{{$value.jobID}}</td>
+							<td>{{$value.showType}}</td>
+							<td>{{$value.timeMeasurement}}</td>
+							<td>{{$value.timeZone}}</td>
+							<td>{{$value.startTime}}</td>
+							<td>{{$value.endTime}}</td>
+							<td>{{$value.refresh}}</td>
+							<td>{{$value.inActiveFlg}}</td>
+							<td>{{$value.createTime}}</td>
+							<td>{{$value.creater}}</td>
+							<td>{{$value.updateTime}}</td>
+							<td>{{$value.updater}}</td>
+							<td>
+								<button style="float:left;width:30px;height:30px;" class="btn btn-warning btn-xs" onclick="showUpdateSchedule('{{$value.jobID}}','{{$value.runRate}}')">
+									<i class="ace-icon fa fa-pencil-square-o bigger-230" style="font-size:23px !important;"></i>
+								</button>
+								<button style="float:right;width:30px;height:30px;background-color:#ff0000 !important;border-color:#ff0000;" class="btn btn-warning btn-xs deleteButton" onclick="showDeleteSchedule('{{$value.jobID}}','{{$value.runRate}}')">
+									<i class="ace-icon fa fa-trash-o fa-2x icon-only"></i>
+								</button>
+							</td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</script>
+		</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('#startTime').datetimepicker();
+		$('#endTime').datetimepicker();
+		$('#btnStartTime').click(function(){
+			$('#startTime').focus();
+			});
+		$('#btnEndTime').click(function(){
+			$('#endTime').focus();
+			});
+	</script>
+</body>

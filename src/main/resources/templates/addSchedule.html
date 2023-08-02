@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8">
+<title>新規スケジュール</title>
+<meta name="description" content="Common form elements and layouts">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/jquery-ui.custom.css">
+<link rel="stylesheet" href="css/chosen.css" />
+<link rel="stylesheet" href="css/datepicker.css" />
+<link rel="stylesheet" href="css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="css/daterangepicker.css" />
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" href="css/colorpicker.css" />
+<link rel="stylesheet" href="css/ace-fonts.css" />
+<link rel="stylesheet" href="css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/jquery/jquery-ui.custom.js"></script>
+<script src="js/jquery/jquery.ui.touch-punch.js"></script>
+<script src="js/jquery/chosen.jquery.js"></script>
+<script src="js/date-time/bootstrap-datepicker.js"></script>
+<script src="js/date-time/bootstrap-timepicker.js"></script>
+<script src="js/date-time/moment.js"></script>
+<script src="js/date-time/daterangepicker.js"></script>
+<script src="js/date-time/bootstrap-datetimepicker.js"></script>
+<script src="js/jquery/jquery.knob.js"></script>
+<script src="js/jquery/jquery.autosize.js"></script>
+<script src="js/jquery/jquery.inputlimiter.1.3.1.js"></script>
+<script src="js/jquery/jquery.maskedinput.js"></script>
+<script src="js/bootstrap-tag.js"></script>
+<script type="text/javascript" src="js/url.js"></script>
+<script type="text/javascript" src="js/schedule.js"></script>
+
+</head>
+<body>
+	<div id="navbar" class="navbar navbar-default">
+		<div class="navbar-container" id="navbar-container">
+			<div class="navbar-header pull-left">
+				<a href="#" class="navbar-brand">
+					<small>
+						<img src="img/Login.JPG"/>
+						新規スケジュール
+					</small>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="main-container"  id="main-container" style="margin-top:50px" >	
+		<form class="form-horizontal" role="form" id="scheduleForm" method="post" enctype="multipart/form-data" onsubmit="return false">
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="jobID" style="text-align:left">ジョブ番号</label>
+	
+				<div class="col-sm-9">
+					<input type="text"  maxlength="50" id="jobID" placeholder="JobID" class="col-xs-10 col-sm-5" style="margin-left:0"/>
+				</div>
+			</div>
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="runRate" style="text-align:left">頻度</label>
+	
+				<select id="runRate" style="margin-left:10px" >
+					<option value=""></option>
+					<option value="0">每分</option>
+					<option value="1">毎時間</option>
+					<option value="2">毎日</option>
+					<option value="3">毎週</option>
+					<option value="4">毎月</option>
+					<option value="5">毎年</option>
+					<option value="6">一次</option>
+				</select>
+			</div>
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="timeMeasurement" style="text-align:left">メトリック </label>
+	
+				<div class="col-sm-5">
+					<input type="text" id="timeMeasurement" placeholder="TimeMeasurement" class="col-xs-10 col-sm-5" style="margin-left:0" />
+				</div>
+			</div>
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="timeZone" style="text-align:left">タイムゾーン </label>
+	
+				<div class="col-sm-5">
+					<input type="text" id="timeZone" placeholder="TimeZone" class="col-xs-10 col-sm-5" style="margin-left:0" />
+				</div>
+			</div>
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="startTime" style="text-align:left">開始時間 </label>
+	
+				<div class="input-group col-sm-5">
+					<input type="text" id="startTime" placeholder="startTime"  class="form-control" style="margin-left:0" />
+					<span id="btnStartTime" class="input-group-addon">
+						<i class="fa fa-clock-o bigger-110"></i>
+					</span>
+				</div>
+			</div>
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="endTime" style="text-align:left">終了時間 </label>
+	
+				<div class="input-group col-sm-5">
+					<input type="text" id="endTime" placeholder="endTime" class="form-control " style="margin-left:0" />
+					<span  id="btnEndTime"  class="input-group-addon">
+						<i class="fa fa-clock-o bigger-110"></i>
+					</span>
+				</div>
+			</div>
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="refresh" style="text-align:left">リフレッシュ(s) </label>
+	
+				<div class="col-sm-5">
+					<input type="text" id="refresh" placeholder="Refresh" class="col-xs-10 col-sm-5" style="margin-left:0" />
+				</div>
+			</div>
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="inActiveFlg" style="text-align:left">Active</label>
+	
+				<select id="inActiveFlg" style="margin-left:10px" >
+					<option value=""></option>
+					<option value="0">Active</option>
+					<option value="1">InActive</option>
+				</select>
+			</div>
+			<div class="clearfix form-actions">
+				<div class="col-md-offset-3 col-md-9">
+					<button class="btn btn-info" type="submit" onclick="addSchedule()">
+						Submit
+					</button>
+					&nbsp; &nbsp; &nbsp;
+					<button class="btn" onclick="window.location.href = 'returnScheduleList'">
+						Back
+					</button>
+				</div>
+			</div>
+			<div class="hr hr-24"></div>
+		</form>
+	</div>
+	<script type="text/javascript">
+		$('#startTime').datetimepicker();
+		$('#endTime').datetimepicker();
+		$('#btnStartTime').click(function(){
+			$('#startTime').focus();
+			});
+		$('#btnEndTime').click(function(){
+			$('#endTime').focus();
+			});
+	</script>
+</body>

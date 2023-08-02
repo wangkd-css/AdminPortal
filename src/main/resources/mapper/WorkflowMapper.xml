@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rmc.dao.WorkflowDao">
+
+	<!-- insert -->
+	<insert id="addWorkflow" parameterType="com.rmc.model.WorkflowModel">
+		insert into
+		workflow(JobID,Status,NextJob,WaitTime)
+		values(#{jobID},#{status},#{nextJob},#{waitTime})
+	</insert>
+	
+	<!-- select -->
+	<select id="getWorkflowList" resultType="com.rmc.model.WorkflowModel">
+		select * from WorkFlow
+	</select>
+	
+	<!-- delete -->
+	<delete id="deleteWorkflow">
+<!-- 		delete from WorkFlow where JobID=#{jobID} and Status=#{status} -->
+		delete from WorkFlow where JobID=#{jobID}
+	</delete>
+	
+	<!-- selectAuto -->
+	<select id="getWorkflow" resultType="com.rmc.model.WorkflowModel">
+<!-- 		select * from WorkFlow where JobID=#{jobID} and Status=#{status} -->
+		select * from WorkFlow where JobID=#{jobID}
+	</select>
+	
+	<!-- update -->
+	<update id="updateWorkflow">
+		update WorkFlow set
+		Status=#{status},NextJob=#{nextJob},WaitTime=#{waitTime} 
+		where
+<!-- 		JobID=#{jobID} and Status=#{status} -->
+		JobID=#{jobID}
+	</update>
+</mapper>

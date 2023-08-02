@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8">
+<title>キーワード</title>
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/ace-fonts.css" />
+<link rel="stylesheet" href="css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+<script src="js/ace-extra.js"></script>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/template-web.js"></script>
+<script type="text/javascript" src="js/KeyWord.js"></script>
+<script type="text/javascript" src="js/url.js"></script>
+</head>
+<body onload="KeyWord()">
+	<div id="navbar" class="navbar navbar-default">
+		<div class="navbar-container" id="navbar-container">
+			<div class="navbar-header pull-left">
+				<a href="#" class="navbar-brand">
+					<small>
+						<img src="img/Login.JPG"/>
+						キーワード
+					</small>
+				</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="updateKeyWord" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+					</button>
+					<h4 class="modal-title" id="KeyWordTitle">オートマタ·ステータス·キーワード更新</h4>
+				</div>
+				
+				<div class="modal-body">
+					<table>
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">キーワード番号</span></td>
+							<td><input type="text" id="keywordId" placeholder="Keyword ID" class="form-control" readonly="readonly"/></td>
+						</tr>
+					</div>
+					<div class="input-group">
+						<tr>
+							<td><label class="input_tip">オートマタ番号</label></td>
+							<td><input style="width: 400px" type="text" id="automataId" placeholder="automataId" class="form-control" readonly="readonly" /></td>
+					    </tr>
+					</div>
+
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">キーワード</span></td>
+							<td><input maxlength="50"  type="text" id="keyword" placeholder="KeyWord" class="form-control" /></td>
+						</tr>
+					</div>	
+					<div class="input-group">
+						<tr>
+												</div>
+					</table>
+				</div>
+				
+				<div class="modal-footer">
+					<button class="btn btn-info" type="submit" onclick="updateKeyWord()">
+						Submit
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="modal fade" id="deleteKeyWord" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<h4 class="modal-title">このキーワードを削除しますか?</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"
+						onclick="deleteKeyWord()">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="form-group" style="margin-left:200px">
+		<button class="btn btn-app btn-primary no-radius" onclick="window.location.href = 'addKeyWord'">
+			+
+		</button>
+		<button class="btn btn-app btn-primary no-radius" onclick="window.location.href = 'index'">
+			<i class="ace-icon fa fa-reply icon-only" style="line-height:30.6px"></i>
+		</button>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+		<div id="KeyWordcontent">
+			<script id="KeyWordlist" type="text/html">
+				<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>キーワード番号</th>
+							<th>オートマタ番号</th>
+							<th>キーワード</th>
+						    <th>作成時間</th>
+							<th>作成者</th>
+							<th>更新時間</th>
+							<th>更新者</th>
+							<th style="width: 80px"></th>
+
+						</tr>
+					</thead>
+					
+					<tbody>
+						{{each $data}}
+						<tr>
+							<td>{{$value.keywordId}}</td>
+							<td>{{$value.automataId}}</td>
+							<td>{{$value.keyword}}</td>
+							<td>{{$value.createTime}}</td>
+							<td>{{$value.creater}}</td>
+							<td>{{$value.updateTime}}</td>
+							<td>{{$value.updater}}</td>
+							<td>
+								<button style="float:left;width:30px;height:30px;" class="btn btn-warning btn-xs" onclick="showUpdateKeyWord('{{$value.keywordId}}')">
+									<i class="ace-icon fa fa-pencil-square-o bigger-230" style="font-size:23px !important;"></i>
+								</button>
+								<button style="float:right;width:30px;height:30px;background-color:#ff0000 !important;border-color:#ff0000;" class="btn btn-warning btn-xs deleteButton" onclick="showDeleteKeyWordDialog('{{$value.keywordId}}')">
+									<i class="ace-icon fa fa-trash-o fa-2x icon-only"></i>
+								</button>
+							</td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</script>
+		</div>
+		</div>
+	</div>
+</body>

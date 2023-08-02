@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8">
+<title>新規キーワード</title>
+<meta name="description" content="Common form elements and layouts">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/jquery-ui.custom.css">
+<link rel="stylesheet" href="css/chosen.css" />
+<link rel="stylesheet" href="css/datepicker.css" />
+<link rel="stylesheet" href="css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="css/daterangepicker.css" />
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" href="css/colorpicker.css" />
+<link rel="stylesheet" href="css/ace-fonts.css" />
+<link rel="stylesheet" href="css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/url.js"></script>
+<script type="text/javascript" src="js/KeyWord.js"></script>
+</head>
+<body>
+	<div id="navbar" class="navbar navbar-default">
+		<div class="navbar-container" id="navbar-container">
+			<div class="navbar-header pull-left">
+				<a href="#" class="navbar-brand">
+					<small>
+						<img src="img/Login.JPG"/>
+						新規キーワード
+					</small>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="main-container"  id="main-container" style="margin-top:50px" >	
+		<form class="form-horizontal" role="form" id="KeyWordForm" method="post" enctype="multipart/form-data" onsubmit="return false">
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="AutomataID" style="text-align:left">オートマタ番号</label>
+	
+				<div class="col-sm-9">
+					<input type="text"  maxlength="50" id="AutomataID" placeholder="AutomataID" class="col-xs-10 col-sm-5" style="margin-left:0"/>
+				</div>
+			</div>
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="KeyWordID" style="text-align:left">キーワード番号</label>
+	
+				<div class="col-sm-9">
+					<input type="text" id="KeyWordID" placeholder="KeyWordID" class="col-xs-10 col-sm-5" style="margin-left:0"/>
+				</div>
+			</div>
+			<div class="form-group" style="margin-left:200px">
+				<label class="col-sm-3 control-label no-padding-right" for="KeyWord" style="text-align:left">キーワード</label>
+	
+				<div class="col-sm-9">
+					<input type="text"  maxlength="50" id="KeyWord" placeholder="KeyWord" class="col-xs-10 col-sm-5" style="margin-left:0"/>
+				</div>
+			</div>
+             <div class="clearfix form-actions">
+				<div class="col-md-offset-3 col-md-9">
+					<button class="btn btn-info" type="submit" onclick="addKeyWord()">
+						Submit
+					</button>
+					&nbsp; &nbsp; &nbsp;
+					<button class="btn" onclick="window.location.href = 'returnKeyWordList'">
+						Back
+					</button>
+				</div>
+			</div>
+			<div class="hr hr-24"></div>
+		</form>
+	</div>
+</body>
