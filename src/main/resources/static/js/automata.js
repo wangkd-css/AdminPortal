@@ -46,6 +46,18 @@ function addAuto() {
     });
 }
 
+function permission(){
+	url = URL + "whoim";
+	$.get(url, function(data) {
+		if(data.authorities[0].authority == 'admin'){
+			$(".userManager").css("display","inline-block")
+		}
+		else{
+			$(".userManager").css("display","none")
+		}
+	});
+}
+
 function autoList() {
 	var url = URL + "auto/autoList";
 	$.get(url, function(data) {
