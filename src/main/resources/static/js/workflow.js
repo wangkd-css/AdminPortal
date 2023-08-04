@@ -42,18 +42,6 @@ function addWorkflow() {
     });
 }
 
-function permission(){
-	url = URL + "whoim";
-	$.get(url, function(data) {
-		if(data.authorities[0].authority == 'admin'){
-			$(".userManager").css("display","inline-block")
-		}
-		else{
-			$(".userManager").css("display","none")
-		}
-	});
-}
-
 function workflowList() {
 	var url = URL + "workflow/workflowList";
 	$.get(url, function(data) {
