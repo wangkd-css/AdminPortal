@@ -118,6 +118,16 @@ public class IndexController {
     	return "addServer";
     }
     
+    @RequestMapping("/returnLessonList")
+    public String returnLessonList() {
+    	return "LessonList";
+    }
+    
+    @RequestMapping("/addLesson")
+    public String addLesson() {
+    	return "addLesson";
+    }
+    
     
     
     @RequestMapping("/whoim")
