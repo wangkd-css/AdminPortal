@@ -1,6 +1,25 @@
 package com.rmc.controller;				
 				
-import java.time.LocalDateTime;				
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.rmc.model.BaseModel;
+import com.rmc.model.WorkflowModel;
+import com.rmc.service.WorkflowService;
+import com.rmc.utils.TextUtils;
+import com.rmc.vo.ClientVO;
+
+import javax.annotation.Resource;			
 import java.util.List;				
 				
 import javax.servlet.http.HttpServletRequest;				
@@ -28,77 +47,15 @@ public class ClientController extends BaseController {
 	@Autowired			
 	ClientService ClientService;			
 				
-	@ResponseBody			
-	@RequestMapping(value ="/addClient", method = RequestMethod.POST)			
-	public BaseModel addClient(HttpSession session,  ClientModel Client) {			
-				
-		if (TextUtils.isEmpty(Client.getCustomerID())) {		
-			return makeModel(ERROR_CODE, "お客様情報を入力してください");	
-		}else {		
-			Client.setCreater(Global.getUserName());	
-			Client.setCreateTime(LocalDateTime.now());	
-			Client.setUpdater(Global.getUserName());	
-			Client.setUpdateTime(LocalDateTime.now());	
-			int code = ClientService.addClient(Client);	
-			if (code == 0) {	
-				return makeModel(code, MSG_ADD_ERROR);
-			} else {	
-				return makeModel(code, MSG_ADD_SUCC);
-			}	
-		}		
-	}			
-				
-	@ResponseBody			
-	@RequestMapping("/ClientList")			
-	public BaseModel getClientList(HttpServletRequest request) {
-		List<ClientModel> models = ClientService.getClientList();
-		return makeModel(SUCC_CODE, MSG_SUCC, models);
-
-	}			
-				
-	@ResponseBody			
-	@RequestMapping("/deleteClient")			
-	public BaseModel deleteClient(HttpSession session, String CustomerID) {			
-				
-		if (TextUtils.isEmpty(CustomerID)) {		
-			return makeModel(ERROR_CODE, "お客様番号を確認ください。");	
-		} else {		
-			int code = ClientService.deleteClient(CustomerID);	
-			if (code == 0) {	
-				return makeModel(code, MSG_DELETE_ERROR);
-			} else {	
-				return makeModel(code, MSG_DELETE_SUCC);
-			}	
-				
-		}		
-	}			
-				
-	@ResponseBody			
-	@RequestMapping("/getClient")			
-	public BaseModel getClient(String CustomerID)  {			
-		List<ClientModel> models = ClientService.getClient(CustomerID);		
-		if (models == null || models.size() == 0) {		
-			return makeModel(ERROR_CODE, "お客様番号を確認ください。");	
-		}		
-		return makeModel(SUCC_CODE, MSG_SUCC, models);		
-				
-	}			
-				
-	@ResponseBody			
-	@RequestMapping(value ="/updateClient", method = RequestMethod.POST)			
-	public BaseModel updateClient(HttpSession session,  ClientModel Client) {			
-				
-		if (TextUtils.isEmpty(Client.getCustomerID()))  {		
-			return makeModel(ERROR_CODE, "お客様情報を入力してください");	
-		}else {		
-			Client.setUpdater(Global.getUserName());	
-			Client.setUpdateTime(LocalDateTime.now());	
-			int code = ClientService.updateClient(Client);	
-			if (code == 0) {	
-				return makeModel(code, MSG_ADD_ERROR);
-			} else {	
-				return makeModel(code, MSG_ADD_SUCC);
-			}	
-		}		
-	}			
+	/**
+     * 前端请求访问的接口
+     * url workflow/queryUserStatus
+     * @param filePath 参数：文件路径  例如“D:\robot-dev”
+     * @return WorkFlowVO 返回结果 返回用户名称核用户状态的list集合对象
+     */
+	
+    @RequestMapping(value ="/queryUserStatus",method = RequestMethod.GET)
+    public List<ClientVO> queryUserStatus(@RequestParam("filePath") String filePath) {
+        return ClientService.queryUserStatus(filePath);
+    }
 }				
