@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rmc.dao.LessonDao">
+
+	<!-- insert -->
+<!-- 	<insert id="addLesson">
+		insert into
+		LessonTable(CustomerID,LessonID,lessonName,lessonType,CreateTime,Creater,UpdateTime,Updater)
+		values(#{customerID},#{lessonID},#{lessonName},#{lessonType},#{createTime},#{creater},#{updateTime},#{updater})
+	</insert> -->
+	
+	<!-- select -->
+	<select id="getLessonList" resultType="com.rmc.model.LessonModel">
+		select * from LessonTable
+	</select>
+	
+ 	<!-- delete -->
+<!-- 	<delete id="deleteLesson">
+		delete from LessonTable where LessonID=#{LessonID}
+	</delete> -->
+	
+	<!-- selectAuto -->
+	<select id="getLesson" resultType="com.rmc.model.LessonModel">
+		select * from LessonTable where LessonID=#{LessonID}
+	</select>
+	
+	<!-- update -->
+	<update id="updateLesson">
+		update LessonTable set
+<!-- 			CustomerID=#{customerID}, -->
+			LessonID=#{lessonID},
+			LessonName=#{lessonName},
+			LessonType=#{lessonType},
+			LessonStatus=#{lessonStatus},
+			UpdateTime=#{updateTime},
+			Updater=#{updater}
+		where
+			LessonID=#{lessonID}
+	</update>
+</mapper>

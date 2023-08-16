@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8">
+<title>课程查询</title>
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/ace-fonts.css" />
+<link rel="stylesheet" href="css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+<script src="js/ace-extra.js"></script>
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/uploadImage.js"></script>
+<script type="text/javascript" src="js/template-web.js"></script>
+<script type="text/javascript" src="js/Lesson.js"></script>
+<script type="text/javascript" src="js/url.js"></script>
+</head>
+<body onload="Lesson()">
+	<div id="navbar" class="navbar navbar-default">
+		<div class="navbar-container" id="navbar-container">
+			<div class="navbar-header pull-left">
+				<a href="#" class="navbar-brand">
+					<small>
+						<img src="img/Login.JPG"/>
+						课程
+					</small>
+				</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="updateLesson" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+					</button>
+					<h4 class="modal-title" id="LessonTitle">课程更新</h4>
+				</div>
+				
+				<div class="modal-body">
+					<table>
+
+
+<!--					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">お客様番号</span></td>
+							<td><input maxlength="50"  type="text" id="customerID" placeholder="CustomerID" class="form-control" readonly="readonly" /></td>
+						</tr>
+					</div>	-->
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">课程番号</span></td>
+							<td><input maxlength="50"  type="text" id="lessonID" placeholder="LessonID" class="form-control" readonly="readonly" /></td>
+						</tr>
+					</div>	
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">课程名</span></td>
+							<td><input maxlength="50"  type="text" id="lessonName" placeholder="lessonName" class="form-control" readonly="readonly" /></td>
+						</tr>
+					</div>	
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">课程种类</span></td>
+							<td><input maxlength="50"  type="text" id="lessonType" placeholder="lessonType" class="form-control" readonly="readonly" /></td>
+						</tr>
+					</div>	
+					<div class="input-group">
+						<tr>
+							<td><span class="input_tip">课程完成状态</span></td>
+							  <td>
+							    <select id="lessonStatus" />
+							    	<option value=""></option>
+							    	<option value="完成">完成</option>
+							    	<option value="未完成">未完成</option>
+							    </select>
+						      </td>
+							<!--<td><input maxlength="50"  type="text" id="lessonID" placeholder="LessonID" class="form-control" /></td>-->
+						</tr>
+					</div>
+					</table>
+				</div>
+
+				<form id="imageUploadForm" enctype="multipart/form-data">
+		           <input type="file" name="imageFile" id="imageFile">
+ 			       <button type="button" onclick="uploadImage()">Upload Image</button>
+				</form>
+				<div class="modal-footer">
+					<button class="btn btn-info" type="submit" onclick="updateLesson()">
+						提交
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+<!--	<div class="modal fade" id="deleteLesson" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<h4 class="modal-title">この業務を削除しますか?</h4>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"
+						onclick="deleteLesson()">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>-->
+	
+	<div class="form-group" style="margin-left:1170px">
+		<button class="btn btn-app btn-primary no-radius" onclick="window.location.href = 'index'">
+			<i class="ace-icon fa fa-reply icon-only" style="line-height:30.6px"></i>
+		</button>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+		<div id="Lessoncontent">
+			<script id="Lessonlist" type="text/html">
+				<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+<!--							<th>お客様番号</th>-->
+							<th>课程番号</th>
+							<th>课程名</th>
+						　　　<th>课程种类</th>
+						　　　<th>课程完成状态</th>
+						　　　<th>完成期限</th>
+						    <th>作成时间</th>
+							<th>作成者</th>
+							<th>更新时间</th>
+							<th>更新者</th>
+							<th style="width: 80px"></th>
+
+						</tr>
+					</thead>
+					
+					<tbody>
+						{{each $data}}
+						<tr>
+<!--							<td>{{$value.customerID}}</td>-->
+							<td>{{$value.lessonID}}</td>
+							<td>{{$value.lessonName}}</td>
+							<td>{{$value.lessonType}}</td>
+							<td>{{$value.lessonStatus}}</td>
+							<td>{{$value.lessonDeadline}}</td>
+							<td>{{$value.createTime}}</td>
+							<td>{{$value.creater}}</td>
+							<td>{{$value.updateTime}}</td>
+							<td>{{$value.updater}}</td>
+												<td>
+								<button style="float:left;width:30px;height:30px;" class="btn btn-warning btn-xs" onclick="showUpdateLesson('{{$value.lessonID}}')">
+									<i class="ace-icon fa fa-pencil-square-o bigger-230" style="font-size:23px !important;"></i>
+								</button>
+								<button style="float:right;width:30px;height:30px;background-color:#ff0000 !important;border-color:#ff0000;" class="btn btn-warning btn-xs deleteButton" onclick="showDeleteLessonDialog('{{$value.lessonID}}')">
+									<i class="ace-icon fa fa-trash-o fa-2x icon-only"></i>
+								</button>
+							</td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</script>
+		</div>
+		</div>
+	</div>
+</body>
