@@ -7,44 +7,44 @@ public class WorkflowModel {
 		super();
 	}
 
-	private String jobID;
+	private String userID;
+
+	private String gender;
 	
-	private String Status;
+	private String employeeNum;
 	
-	private String NextJob;
-	
-	private String WaitTime;
+	private String mailbox;
 
-	public String getJobID() {
-		return jobID;
+	public String getUserID() {
+		return userID;
 	}
 
-	public void setJobID(String jobID) {
-		this.jobID = jobID;
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 
-	public String getStatus() {
-		return Status;
+	public String getGender() {
+		return gender;
 	}
 
-	public void setStatus(String status) {
-		Status = status;
-	}
-	
-	public String getNextJob() {
-		return NextJob;
-	}
-	
-	public void setNextJob(String nextJob) {
-		NextJob = nextJob;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
-	public String getWaitTime() {
-		return WaitTime;
+	public String getEmployeeNum() {
+		return employeeNum;
 	}
 
-	public void setWaitTime(String waitTime) {
-		WaitTime = waitTime;
+	public void setEmployeeNum(String employeeNum) {
+		this.employeeNum = employeeNum;
+	}
+
+	public String getMailbox() {
+		return mailbox;
+	}
+
+	public void setMailbox(String mailbox) {
+		this.mailbox = mailbox;
 	}
 
 }

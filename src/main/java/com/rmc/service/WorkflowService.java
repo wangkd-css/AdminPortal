@@ -36,8 +36,8 @@ public class WorkflowService {
 	 * public List<WorkflowModel> getWorkflow(String jobID,String status){ return
 	 * workflowDao.getWorkflow(jobID,status); }
 	 */
-	public List<WorkflowModel> getWorkflow(String jobID){
-		return workflowDao.getWorkflow(jobID);
+	public List<WorkflowModel> getWorkflow(String userID){
+		return workflowDao.getWorkflow(userID);
 	}
 	
 	public int updateWorkflow(WorkflowModel workflow) {

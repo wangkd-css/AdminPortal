@@ -12,7 +12,7 @@ public class AutomataModel {
 	private String automataName;
 	private int automataType;
 	private String showType;
-	private String businessID;
+	private String status;
 	private int maxTime;
 	private LocalDateTime createTime;
 	private String creater;
@@ -51,12 +51,12 @@ public class AutomataModel {
 		this.showType = showType;
 	}
 
-	public String getBusinessID() {
-		return businessID;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setBusinessID(String businessID) {
-		this.businessID = businessID;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public int getMaxTime() {

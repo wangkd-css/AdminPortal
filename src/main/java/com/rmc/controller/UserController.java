@@ -69,7 +69,7 @@ public class UserController extends BaseController {
 	public BaseModel deleteUser(HttpSession session, String userId) {
 		
 		if (TextUtils.isEmpty(userId)) {
-			return makeModel(ERROR_CODE, "ユーザーIDを確認ください。");
+			return makeModel(ERROR_CODE, "请确认用户名。");
 		} else {
 			int code = userService.deleteUser(userId);
 			if (code == 0) {
@@ -86,7 +86,7 @@ public class UserController extends BaseController {
 	public BaseModel getUser(String userId) {
 		UserModel models = userService.getUserById(userId);
 		if (models == null || models.getUserId() == null) {
-			return makeModel(ERROR_CODE, "ユーザーIDを確認ください。");
+			return makeModel(ERROR_CODE, "请确认用户名。");
 		}
 		return makeModel(SUCC_CODE, MSG_SUCC, models);
 
@@ -97,7 +97,7 @@ public class UserController extends BaseController {
 	public BaseModel updateUser(HttpSession session,  UserModel user) {
 		
 		if (user.getUserId() == null) {
-			return makeModel(ERROR_CODE, "ユーザー情報を入力してください");
+			return makeModel(ERROR_CODE, "请输入用户情报。");
 		}else {
 			int code = userService.updateUser(user);
 			if (code == 0) {
@@ -113,7 +113,7 @@ public class UserController extends BaseController {
 	public BaseModel resetUser(HttpSession session, String userId) {
 		
 		if (TextUtils.isEmpty(userId)) {
-			return makeModel(ERROR_CODE, "ユーザーIDを確認ください。");
+			return makeModel(ERROR_CODE, "请确认用户名。");
 		}else {
 			UserModel user = new UserModel();
 			user.setUserId(userId);
@@ -132,7 +132,7 @@ public class UserController extends BaseController {
 	public BaseModel changePassword(HttpSession session,  UserModel user) {
 		
 		if (user.getUserId() == null) {
-			return makeModel(ERROR_CODE, "ユーザー情報を入力してください");
+			return makeModel(ERROR_CODE, "请输入用户情报。");
 		}else {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			int code = userService.changePassword(user);

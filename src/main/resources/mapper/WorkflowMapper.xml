@@ -5,8 +5,8 @@
 	<!-- insert -->
 	<insert id="addWorkflow" parameterType="com.rmc.model.WorkflowModel">
 		insert into
-		workflow(JobID,Status,NextJob,WaitTime)
-		values(#{jobID},#{status},#{nextJob},#{waitTime})
+		workflow(UserID,gender,employeeNum,mailbox)
+		values(#{userID},#{gender},#{employeeNum},#{mailbox})
 	</insert>
 	
 	<!-- select -->
@@ -17,21 +17,21 @@
 	<!-- delete -->
 	<delete id="deleteWorkflow">
 <!-- 		delete from WorkFlow where JobID=#{jobID} and Status=#{status} -->
-		delete from WorkFlow where JobID=#{jobID}
+		delete from WorkFlow where UserID=#{userID}
 	</delete>
 	
 	<!-- selectAuto -->
 	<select id="getWorkflow" resultType="com.rmc.model.WorkflowModel">
 <!-- 		select * from WorkFlow where JobID=#{jobID} and Status=#{status} -->
-		select * from WorkFlow where JobID=#{jobID}
+		select * from WorkFlow where UserID=#{userID}
 	</select>
 	
 	<!-- update -->
 	<update id="updateWorkflow">
 		update WorkFlow set
-		Status=#{status},NextJob=#{nextJob},WaitTime=#{waitTime} 
+		gender=#{gender},employeeNum=#{employeeNum},mailbox=#{mailbox} 
 		where
 <!-- 		JobID=#{jobID} and Status=#{status} -->
-		JobID=#{jobID}
+		UserID=#{userID}
 	</update>
 </mapper>

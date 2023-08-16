@@ -24,9 +24,9 @@ public interface WorkflowDao {
 	 * public List<WorkflowModel> getWorkflow(@Param("jobID") String
 	 * jobID,@Param("status") String status);
 	 */
-	public int deleteWorkflow(@Param("jobID") String jobID);
+	public int deleteWorkflow(@Param("userID") String userID);
 	
-	public List<WorkflowModel> getWorkflow(@Param("jobID") String jobID);
+	public List<WorkflowModel> getWorkflow(@Param("userID") String userID);
 	
 	public int updateWorkflow(WorkflowModel workflow);
 	

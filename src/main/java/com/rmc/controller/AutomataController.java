@@ -33,7 +33,7 @@ public class AutomataController extends BaseController {
 	public BaseModel addAuto(HttpSession session,  AutomataModel automata) {
 		
 		if (automata.getAutomataID() == null) {
-			return makeModel(ERROR_CODE, "オートマタ情報を入力してください");
+			return makeModel(ERROR_CODE, "请输入用户信息");
 		}else {
 			SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			automata.setCreater(Global.getUserName());
@@ -67,7 +67,7 @@ public class AutomataController extends BaseController {
 	public BaseModel deleteAuto(HttpSession session, String automataID) {
 		
 		if (TextUtils.isEmpty(automataID)) {
-			return makeModel(ERROR_CODE, "オートマタIDを確認ください。");
+			return makeModel(ERROR_CODE, "请确认用户名。");
 		} else {
 			int code = autoService.deleteAuto(automataID);
 			if (code == 0) {
@@ -84,7 +84,7 @@ public class AutomataController extends BaseController {
 	public BaseModel getAuto(String automataID) {
 		List<AutomataModel> models = autoService.getAuto(automataID);
 		if (models == null || models.size() == 0) {
-			return makeModel(ERROR_CODE, "オートマタIDを確認ください。");
+			return makeModel(ERROR_CODE, "请确认用户名。");
 		}
 		return makeModel(SUCC_CODE, MSG_SUCC, models);
 
@@ -95,7 +95,7 @@ public class AutomataController extends BaseController {
 	public BaseModel updateAuto(HttpSession session,  AutomataModel automata) {
 		
 		if (automata.getAutomataID() == null) {
-			return makeModel(ERROR_CODE, "オートマタ情報を入力してください");
+			return makeModel(ERROR_CODE, "请输入用户信息");
 		}else {
 			automata.setUpdater(Global.getUserName());
 			automata.setUpdateTime(LocalDateTime.now());

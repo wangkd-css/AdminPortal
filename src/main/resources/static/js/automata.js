@@ -4,7 +4,7 @@ function addAuto() {
 	var automataID = $('#automataID').val();
 	var automataName = $('#automataName').val();
 	var automataType = $('#automataType').val();
-	var businessID = $('#businessID').val();
+	var status = $('#status').val();
 	var maxTime = $('#maxTime').val();
 	if (automataID.length <= 0) {
 		alert("请输入课程番号！")
@@ -18,8 +18,8 @@ function addAuto() {
 		alert("请输入课程种类！")
 		return;
 	}
-	if (businessID <= 0) {
-		alert("请输入业务番号！")
+	if (status.length <= 0) {
+		alert("请输入完成状态！")
 		return;
 	}
 	if (maxTime <= 0) {
@@ -30,7 +30,7 @@ function addAuto() {
         type: "POST",
         dataType: "json",
         url: URL + "auto/addAuto/",
-		data:{'automataID':automataID,'automataName':automataName,'automataType':automataType,'businessID':businessID,'maxTime':maxTime},
+		data:{'automataID':automataID,'automataName':automataName,'automataType':automataType,'status':status,'maxTime':maxTime},
         success: function (data) {
             console.log(data);
             if (data.code == 0) {
@@ -98,7 +98,7 @@ function showUpdateAuto(id) {
 			$('#automataID').val(data.data[0].automataID);
 			$('#automataName').val(data.data[0].automataName);
 			$('#automataType').val(data.data[0].automataType);
-			$('#businessID').val(data.data[0].businessID);
+			$('#status').val(data.data[0].status);
 			$('#maxTime').val(data.data[0].maxTime);
 			$('#updateAuto').modal('show');
 		} else {
@@ -111,7 +111,7 @@ function updateAuto() {
 	var automataID = $('#automataID').val();
 	var automataName = $('#automataName').val();
 	var automataType = $('#automataType').val();
-	var businessID = $('#businessID').val();
+	var status = $('#status').val();
 	var maxTime = $('#maxTime').val();
 	if (automataName.length <= 0) {
 		alert("请输入课程名！")
@@ -121,8 +121,8 @@ function updateAuto() {
 		alert("请输入课程种类！")
 		return;
 	}
-	if (businessID <= 0) {
-		alert("请输入业务番号！")
+	if (status.length <= 0) {
+		alert("请输入完成状态！")
 		return;
 	}
 	if (maxTime <= 0) {
@@ -133,7 +133,7 @@ function updateAuto() {
         type: "POST",
         dataType: "json",
         url: URL + "auto/updateAuto/",
-		data:{'automataID':automataID,'automataName':automataName,'automataType':automataType,'businessID':businessID,'maxTime':maxTime},
+		data:{'automataID':automataID,'automataName':automataName,'automataType':automataType,'status':status,'maxTime':maxTime},
         success: function (data) {
             console.log(data);
             if (data.code == 0) {

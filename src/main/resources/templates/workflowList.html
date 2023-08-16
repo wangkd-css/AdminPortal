@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta charset="utf-8">
-<title>用户情报</title>
+<title>用户信息情报</title>
 <meta name="description" content="Static &amp; Dynamic Tables" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -23,7 +23,7 @@
 				<a href="#" class="navbar-brand">
 					<small>
 						<img src="img/Login.JPG"/>
-						用户情报
+						用户信息情报
 					</small>
 				</a>
 			</div>
@@ -44,7 +44,7 @@
 					<div class="input-group">
 						<tr>
 							<td><label class="input_tip">用户名</label></td>
-							<td><input style="width: 400px" type="text" id="jobID" placeholder="JobID" class="form-control" readonly="readonly" />
+							<td><input style="width: 400px" type="text" id="userID" placeholder="用户名" class="form-control" readonly="readonly" />
 							</td>
 					    </tr>
 					</div>
@@ -52,8 +52,8 @@
 						<tr>
 							<td><span class="input_tip">性别</span></td>
 							<td>
-								<select id="status" >
-									<option></option>
+								<select id="gender" >
+									<option></option>-->
 									<option>男</option>
 									<option>女</option>
 								</select>
@@ -64,13 +64,13 @@
 					<div class="input-group">
 						<tr>
 							<td><span class="input_tip">员工号</span></td>
-							<td><input maxlength="50"  type="text" id="nextJob" placeholder="NextJob" class="form-control" /></td>
+							<td><input maxlength="50"  type="text" id="employeeNum" placeholder="员工号" class="form-control" /></td>
 						</tr>
 					</div>
 					<div class="input-group">
 						<tr>
 							<td><span class="input_tip">邮箱 </span></td>
-							<td><input type="text" id="waitTime" placeholder="WaitTime" class="form-control"/></td>
+							<td><input type="text" id="mailbox" placeholder="邮箱" class="form-control"/></td>
 						</tr>
 					</div>
 					</table>
@@ -133,15 +133,17 @@
 					<tbody>
 						{{each $data}}
 						<tr>
-							<td>{{$value.jobID}}</td>
-							<td>{{$value.status}}</td>
-							<td>{{$value.nextJob}}</td>
-							<td>{{$value.waitTime}}</td>
+							<td>{{$value.userID}}</td>
+							<td>{{$value.gender}}</td>
+							<td>{{$value.employeeNum}}</td>
+							<td>{{$value.mailbox}}</td>
 							<td>
-								<button style="float:left;width:30px;height:30px;" class="btn btn-warning btn-xs" onclick="showUpdateWorkflow('{{$value.jobID}}','{{$value.status}}')">
+<!--								<button style="float:left;width:30px;height:30px;" class="btn btn-warning btn-xs" onclick="showUpdateWorkflow('{{$value.userID}}','{{$value.status}}')">-->
+								<button style="float:left;width:30px;height:30px;" class="btn btn-warning btn-xs" onclick="showUpdateWorkflow('{{$value.userID}}')">
 									<i class="ace-icon fa fa-pencil-square-o bigger-230" style="font-size:23px !important;"></i>
 								</button>
-								<button style="float:right;width:30px;height:30px;background-color:#ff0000 !important;border-color:#ff0000;" class="btn btn-warning btn-xs deleteButton" onclick="showDeleteWorkflow('{{$value.jobID}}','{{$value.status}}')">
+<!--								<button style="float:right;width:30px;height:30px;background-color:#ff0000 !important;border-color:#ff0000;" class="btn btn-warning btn-xs deleteButton" onclick="showDeleteWorkflow('{{$value.userID}}','{{$value.status}}')">-->
+								<button style="float:right;width:30px;height:30px;background-color:#ff0000 !important;border-color:#ff0000;" class="btn btn-warning btn-xs deleteButton" onclick="showDeleteWorkflow('{{$value.userID}}')">
 									<i class="ace-icon fa fa-trash-o fa-2x icon-only"></i>
 								</button>
 							</td>

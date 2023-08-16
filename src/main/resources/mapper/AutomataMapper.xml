@@ -5,8 +5,8 @@
 	<!-- insert -->
 	<insert id="addAuto">
 		insert into
-		Automata(AutomataID,AutomataName,AutomataType,BusinessID,MaxTime,CreateTime,Creater,UpdateTime,Updater)
-		values(#{automataID},#{automataName},#{automataType},#{businessID},#{maxTime},#{createTime},#{creater},#{updateTime},#{updater})
+		Automata(AutomataID,AutomataName,AutomataType,Status,MaxTime,CreateTime,Creater,UpdateTime,Updater)
+		values(#{automataID},#{automataName},#{automataType},#{status},#{maxTime},#{createTime},#{creater},#{updateTime},#{updater})
 	</insert>
 	
 	<!-- select -->
@@ -27,7 +27,7 @@
 	<!-- update -->
 	<update id="updateAuto">
 		update Automata set
-		AutomataName=#{automataName},AutomataType=#{automataType},BusinessID=#{businessID},MaxTime=#{maxTime},UpdateTime=#{updateTime},Updater=#{updater}
+		AutomataName=#{automataName},AutomataType=#{automataType},Status=#{status},MaxTime=#{maxTime},UpdateTime=#{updateTime},Updater=#{updater}
 		where
 		AutomataID=#{automataID}
 	</update>

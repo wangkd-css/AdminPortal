@@ -44,14 +44,14 @@
 					<div class="input-group">
 						<tr>
 							<td><label class="input_tip">课程番号</label></td>
-							<td><input style="width: 400px" type="text" id="automataID" placeholder="AutomataID" class="form-control" readonly="readonly" />
+							<td><input style="width: 400px" type="text" id="automataID" placeholder="课程番号" class="form-control" readonly="readonly" />
 							</td>
 					    </tr>
 					</div>
 					<div class="input-group">
 						<tr>
 							<td><span class="input_tip">课程名</span></td>
-							<td><input maxlength="50"  type="text" id="automataName" placeholder="AutomataName" class="form-control" /></td>
+							<td><input maxlength="50"  type="text" id="automataName" placeholder="课程名" class="form-control" /></td>
 						</tr>
 					</div>
 					<div class="input-group">
@@ -70,12 +70,12 @@
 					</div>
 					<div class="input-group">
 						<tr>
-							<td><span class="input_tip">业务番号</span></td>
+							<td><span class="input_tip">完成状态</span></td>
 							<td>
-								<select id="businessID">
-									<option value=""></option>
-									<option value="1">1</option>
-									<option value="2">2</option>
+								<select id="status">
+				                	<option></option>
+				            		<option>完成</option>
+				            		<option>未完成</option>
 								</select>
 							</td>
 						</tr>
@@ -83,7 +83,7 @@
 					<div class="input-group">
 						<tr>
 							<td><span class="input_tip">完成期限 </span></td>
-							<td><input type="text" id="maxTime" placeholder="Maxtime" class="form-control"/></td>
+							<td><input type="text" id="maxTime" placeholder="完成期限" class="form-control"/></td>
 						</tr>
 					</div>
 					</table>
@@ -137,13 +137,14 @@
 							<th>课程番号</th>
 							<th>课程名</th>
 							<th>课程种类</th>
-							<th>业务番号</th>
+							<th>完成状态</th>
 							<th>完成期限</th>
 							<th>作成时间</th>
 							<th>作成者</th>
 							<th>更新时间</th>
 							<th>更新者</th>
-							<th style="width: 80px"></th>
+							<th style="width: 100px"></th>
+							<th>状态查询</th>
 
 						</tr>
 					</thead>
@@ -154,7 +155,7 @@
 							<td>{{$value.automataID}}</td>
 							<td>{{$value.automataName}}</td>
 							<td>{{$value.showType}}</td>
-							<td>{{$value.businessID}}</td>
+							<td>{{$value.status}}</td>
 							<td>{{$value.maxTime}}</td>
 							<td>{{$value.createTime}}</td>
 							<td>{{$value.creater}}</td>
@@ -164,9 +165,12 @@
 								<button style="float:left;width:30px;height:30px;" class="btn btn-warning btn-xs" onclick="showUpdateAuto('{{$value.automataID}}')">
 									<i class="ace-icon fa fa-pencil-square-o bigger-230" style="font-size:23px !important;"></i>
 								</button>
-								<button style="float:right;width:30px;height:30px;background-color:#ff0000 !important;border-color:#ff0000;" class="btn btn-warning btn-xs deleteButton" onclick="showDeleteAutoDialog('{{$value.automataID}}')">
+								<button style="margin-left:5px;;width:30px;height:30px;background-color:#ff0000 !important;border-color:#ff0000;" class="btn btn-warning btn-xs deleteButton" onclick="showDeleteAutoDialog('{{$value.automataID}}')">
 									<i class="ace-icon fa fa-trash-o fa-2x icon-only"></i>
 								</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-primary" onclick="checkStatus()">查询</button>
 							</td>
 						</tr>
 						{{/each}}

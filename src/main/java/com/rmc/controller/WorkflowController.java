@@ -28,8 +28,8 @@ public class WorkflowController extends BaseController {
 	@RequestMapping(value ="/addWorkflow", method = RequestMethod.POST)
 	public BaseModel addWorkflow(HttpSession session,  WorkflowModel workflow) {
 		
-		if (workflow.getJobID() == null) {
-			return makeModel(ERROR_CODE, "ジョブ情報を入力してください");
+		if (workflow.getUserID() == null) {
+			return makeModel(ERROR_CODE, "请输入用户信息");
 		}else {
 			int code = workflowService.addWorkflow(workflow);
 			if (code == 0) {
@@ -54,13 +54,13 @@ public class WorkflowController extends BaseController {
 	 * public BaseModel deleteWorkflow(HttpSession session, String jobID , String
 	 * status) {
 	 */
-	public BaseModel deleteWorkflow(HttpSession session, String jobID) {
+	public BaseModel deleteWorkflow(HttpSession session, String userID) {
 		
-		if (TextUtils.isEmpty(jobID)) {
-			return makeModel(ERROR_CODE, "ジョブIDを確認ください。");
+		if (TextUtils.isEmpty(userID)) {
+			return makeModel(ERROR_CODE, "请确认用户名。");
 		} else {
 			/* int code = workflowService.deleteWorkflow(jobID,status); */
-			int code = workflowService.deleteWorkflow(jobID);
+			int code = workflowService.deleteWorkflow(userID);
 			if (code == 0) {
 				return makeModel(code, MSG_DELETE_ERROR);
 			} else {
@@ -76,10 +76,10 @@ public class WorkflowController extends BaseController {
 	 * public BaseModel getWorkflow(String jobID,String status) {
 	 * List<WorkflowModel> models = workflowService.getWorkflow(jobID,status);
 	 */
-	public BaseModel getWorkflow(String jobID) {
-		List<WorkflowModel> models = workflowService.getWorkflow(jobID);	
+	public BaseModel getWorkflow(String userID) {
+		List<WorkflowModel> models = workflowService.getWorkflow(userID);	
 		if (models == null || models.size() == 0) {
-			return makeModel(ERROR_CODE, "ジョブIDを確認ください。");
+			return makeModel(ERROR_CODE, "请确认用户名。");
 		}
 		return makeModel(SUCC_CODE, MSG_SUCC, models);
 
@@ -89,8 +89,8 @@ public class WorkflowController extends BaseController {
 	@RequestMapping(value ="/updateWorkflow", method = RequestMethod.POST)
 	public BaseModel updateWorkflow(HttpSession session,  WorkflowModel workflow) {
 		
-		if (workflow.getJobID() == null) {
-			return makeModel(ERROR_CODE, "オートマタ情報を入力してください");
+		if (workflow.getUserID() == null) {
+			return makeModel(ERROR_CODE, "请输入用户信息");
 		}else {
 			int code = workflowService.updateWorkflow(workflow);
 			if (code == 0) {

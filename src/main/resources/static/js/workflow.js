@@ -1,24 +1,24 @@
-var jobID;
-var status;
+var userID;
+/*var status;*/
 
 function addWorkflow() {
-	var jobID = $('#jobID').val();
-	var status = $('#status').val();
-	var nextJob = $('#nextJob').val();
-	var waitTime = $('#waitTime').val();
-	if (jobID.length <= 0) {
+	var userID = $('#userID').val();
+	var gender = $('#gender').val();
+	var employeeNum = $('#employeeNum').val();
+	var mailbox = $('#mailbox').val();
+	if (userID.length <= 0) {
 		alert("请输入用户名！")
 		return;
 	}
-	if (status.length <= 0) {
+	if (gender.length <= 0) {
 		alert("请输入性别！")
 		return;
 	}
-	if (nextJob <= 0) {
+	if (employeeNum.length <= 0) {
 		alert("请输入员工号！")
 		return;
 	}
-	if (waitTime <= 0) {
+	if (mailbox.length <= 0) {
 		alert("请输入邮箱！")
 		return;
 	}
@@ -26,7 +26,7 @@ function addWorkflow() {
         type: "POST",
         dataType: "json",
         url: URL + "workflow/addWorkflow/",
-		data:{'jobID':jobID,'status':status,'nextJob':nextJob,'waitTime':waitTime},
+		data:{'userID':userID,'gender':gender,'employeeNum':employeeNum,'mailbox':mailbox},
         success: function (data) {
             console.log(data);
             if (data.code == 0) {
@@ -65,11 +65,12 @@ function workflowList() {
 
 function deleteWorkflow() {
 	$('#deleteWorkflow').modal('hide');
-	if (jobID.length <= 0) {
+	if (userID.length <= 0) {
 		alert("请确认用户名。")
 		return;
 	}
-	var url = URL + "workflow/deleteWorkflow?jobID=" + jobID + "&status=" + status;
+/*	var url = URL + "workflow/deleteWorkflow?jobID=" + jobID + "&status=" + status;*/
+	var url = URL + "workflow/deleteWorkflow?userID=" + userID;
 	$.get(url, function(data) {
 		if (data.code == 1) {
 			workflowList();
@@ -80,21 +81,24 @@ function deleteWorkflow() {
 
 }
 
-function showDeleteWorkflow(id,sta) {
-	jobID = id;
-	status = sta
+/*function showDeleteWorkflow(id,sta) {*/
+function showDeleteWorkflow(id) {
+	userID = id;
+/*	status = sta*/
 	$('#deleteWorkflow').modal('show');
 }
 
 
-function showUpdateWorkflow(id,sta) {
-	var url = URL + "workflow/getWorkflow?jobID=" + id + "&status=" + sta;
+/*function showUpdateWorkflow(id,sta) {
+	var url = URL + "workflow/getWorkflow?jobID=" + id + "&status=" + sta;*/
+function showUpdateWorkflow(id) {
+	var url = URL + "workflow/getWorkflow?userID=" + id;
 	$.get(url, function(data) {
 		if (data.code == 1) {
-			$('#jobID').val(data.data[0].jobID);
-			$('#status').val(data.data[0].status);
-			$('#nextJob').val(data.data[0].nextJob);
-			$('#waitTime').val(data.data[0].waitTime);
+			$('#userID').val(data.data[0].userID);
+			$('#gender').val(data.data[0].gender);
+			$('#employeeNum').val(data.data[0].employeeNum);
+			$('#mailbox').val(data.data[0].mailbox);
 			$('#updateWorkflow').modal('show');
 		} else {
 			alert(data.msg)
@@ -103,23 +107,23 @@ function showUpdateWorkflow(id,sta) {
 }
 
 function updateWorkflow() {
-	var jobID = $('#jobID').val();
-	var status = $('#status').val();
-	var nextJob = $('#nextJob').val();
-	var waitTime = $('#waitTime').val();
-	if (jobID.length <= 0) {
+	var userID = $('#userID').val();
+	var gender = $('#gender').val();
+	var employeeNum = $('#employeeNum').val();
+	var mailbox = $('#mailbox').val();
+	if (userID.length <= 0) {
 		alert("请输入用户名！")
 		return;
 	}
-	if (status.length <= 0) {
+	if (gender.length <= 0) {
 		alert("请输入性别！")
 		return;
 	}
-	if (nextJob <= 0) {
+	if (employeeNum.length <= 0) {
 		alert("请输入员工号！")
 		return;
 	}
-	if (waitTime <= 0) {
+	if (mailbox.length <= 0) {
 		alert("请输入邮箱！")
 		return;
 	}
@@ -127,7 +131,7 @@ function updateWorkflow() {
         type: "POST",
         dataType: "json",
         url: URL + "workflow/updateWorkflow/",
-		data:{'jobID':jobID,'status':status,'nextJob':nextJob,'waitTime':waitTime},
+		data:{'userID':userID,'gender':gender,'employeeNum':employeeNum,'mailbox':mailbox},
         success: function (data) {
             console.log(data);
             if (data.code == 0) {

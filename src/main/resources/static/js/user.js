@@ -2,20 +2,25 @@ var userId;
 
 function addUser() {
 	var userId = $('#userId').val();
+	var password = $('#password').val();
 	var permission = $('#permission').val();
 	if (userId.length <= 0) {
-		alert("ユーザー名を入力してください!")
+		alert("请输入用户名！")
 		return;
 	}
-	if (permission <= 0) {
-		alert("権限を入力してください!")
+	if (password.length <= 0) {
+		alert("请输入密码！")
+		return;
+	}
+	if (permission.length <= 0) {
+		alert("请输入权限！")
 		return;
 	}
 	$.ajax({
         type: "POST",
         dataType: "json",
         url: URL + "user/addUser/",
-		data:{'userId':userId,'permission':permission},
+		data:{'userId':userId,'password':password,'permission':permission},
         success: function (data) {
             console.log(data);
             if (data.code == 1) {
@@ -26,7 +31,7 @@ function addUser() {
             }
         },
         error : function() {
-            alert("異常!");
+            alert("异常！");
         }
     });
 
@@ -48,7 +53,7 @@ function userList() {
 function deleteUser() {
 	$('#deleteUser').modal('hide');
 	if (userId.length <= 0) {
-		alert("ユーザーIDを確認ください。")
+		alert("请确认用户名！")
 		return;
 	}
 	var url = URL + "user/deleteUser?userId="
@@ -85,11 +90,11 @@ function updateUser() {
 	var userId = $('#userId').val();
 	var permission = $('#permission').val();
 	if (userId.length <= 0) {
-		alert("ユーザー名を入力してください!")
+		alert("请输入用户名！")
 		return;
 	}
 	if (permission <= 0) {
-		alert("権限を入力してください!")
+		alert("请输入权限！")
 		return;
 	}
 	$.ajax({
@@ -107,7 +112,7 @@ function updateUser() {
             }
         },
         error : function() {
-            alert("異常!");
+            alert("异常！");
         }
     });
 }
@@ -120,7 +125,7 @@ function showResetUser(id) {
 function resetUser() {
 	$('#resetUser').modal('hide');
 	if (userId.length <= 0) {
-		alert("ユーザーIDを確認ください。")
+		alert("请确认用户名。")
 		return;
 	}
 	var url = URL + "user/resetUser?userId="
