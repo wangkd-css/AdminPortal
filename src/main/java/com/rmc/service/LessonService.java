@@ -18,22 +18,21 @@ public class LessonService {
 	LessonDao Lessondao;	
 	//mapper
 		
+	public int addLesson(LessonModel Lesson) {
+		return Lessondao.addLesson(Lesson);
+	}
+
 		
-	/*
-	 * public int addLesson(LessonModel Lesson) { return
-	 * Lessondao.addLesson(Lesson); }
-	 */
-		
-	public List<LessonModel> getLessonList(){	
-		return Lessondao.getLessonList();
+	public List<LessonModel> getLessonList(String userName1){	
+		return Lessondao.getLessonList(userName1);
 	}	
 		
 	/*
 	 * public int deleteLesson(String id) { return Lessondao.deleteLesson(id); }
 	 */
 		
-	public List<LessonModel> getLesson(String LessonID){	
-		return Lessondao.getLesson(LessonID);
+	public List<LessonModel> getLesson(String automataID){	
+		return Lessondao.getLesson(automataID);
 	}	
 		
 	public int updateLesson(LessonModel Lesson) {	

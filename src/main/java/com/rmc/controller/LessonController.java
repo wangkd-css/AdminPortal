@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;				
 import javax.servlet.http.HttpSession;				
 				
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;				
 import org.springframework.stereotype.Controller;				
 import org.springframework.web.bind.annotation.RequestMapping;				
@@ -13,14 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;				
 				
 import com.rmc.model.BaseModel;
-import com.rmc.model.LessonModel;				
+import com.rmc.model.LessonModel;
+import com.rmc.model.UserModel;
 import com.rmc.service.LessonService;				
 import com.rmc.utils.Global;				
 import com.rmc.utils.TextUtils;				
-				
-				
-				
-				
+													
 @Controller				
 @RequestMapping("/Lesson")				
 public class LessonController extends BaseController {				
@@ -28,29 +28,51 @@ public class LessonController extends BaseController {
 	@Autowired			
 	LessonService LessonService;			
 				
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value ="/addLesson", method = RequestMethod.POST) public
-	 * BaseModel addLesson(HttpSession session, LessonModel Lesson) {
-	 * 
-	 * if (TextUtils.isEmpty(Lesson.getLessonID())) { return makeModel(ERROR_CODE,
-	 * "業務情報を入力してください"); }else { Lesson.setCreater(Global.getUserName());
-	 * Lesson.setCreateTime(LocalDateTime.now());
-	 * Lesson.setUpdater(Global.getUserName());
-	 * Lesson.setUpdateTime(LocalDateTime.now()); int code =
-	 * LessonService.addLesson(Lesson); if (code == 0) { return makeModel(code,
-	 * MSG_ADD_ERROR); } else { return makeModel(code, MSG_ADD_SUCC); } } }
-	 */			
+
+	 @ResponseBody	  
+	 @RequestMapping(value ="/addLesson", method = RequestMethod.POST)
+	 public	 BaseModel addLesson(HttpSession session, LessonModel Lesson) {
+	  
+	 if (Lesson.getAutomataID() == null) { 
+		return makeModel(ERROR_CODE, "業務情報を入力してください"); }
+	 else {
+		System.out.println("adddata");
+		//SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Lesson.setuserID(Global.getUserName());
+		Lesson.setCreater(Global.getUserName());
+	 	Lesson.setCreateTime(LocalDateTime.now());
+	 	Lesson.setUpdater(Global.getUserName());
+	 	Lesson.setUpdateTime(LocalDateTime.now()); 
+	    int code =	LessonService.addLesson(Lesson); 
+	    if (code == 0) { 
+	    	return makeModel(code, MSG_ADD_ERROR);
+	    	}
+	    else {
+	    	return makeModel(code, MSG_ADD_SUCC);
+	    	}
+	    }
+	 }
+			
 				
 	@ResponseBody			
 	@RequestMapping("/LessonList")			
 	public BaseModel getJobList(HttpServletRequest request) {
-		List<LessonModel> models = LessonService.getLessonList();
-		return makeModel(SUCC_CODE, MSG_SUCC, models);
+    	
+		UserDetails Authentication = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userName1 = Authentication.getUsername();		
+    	
+		List<LessonModel> models = LessonService.getLessonList(userName1);
 
+		String showType;		
+		for(int i=0;i<models.size();i++) {
+			showType = models.get(i).getComent(models.get(i).getLessonType());
+			models.get(i).setShowType(showType);
+		}
+		
+		return makeModel(SUCC_CODE, MSG_SUCC, models);
+		
 	}			
-				
+
 	/*
 	 * @ResponseBody
 	 * 
@@ -67,9 +89,14 @@ public class LessonController extends BaseController {
 				
 	@ResponseBody			
 	@RequestMapping("/getLesson")			
-	public BaseModel getLesson(String LessonID)  {			
-		List<LessonModel> models = LessonService.getLesson(LessonID);		
-		if (models == null || models.size() == 0) {		
+	public BaseModel getLesson(String automataID)  {
+
+		List<LessonModel> models = LessonService.getLesson(automataID);	
+		System.out.println("auto:" + automataID);
+		System.out.println("models:" + models);
+		if (models == null || models.size() == 0) {
+			System.out.println("ｗｈｙ");
+
 			return makeModel(ERROR_CODE, "業務番号を確認ください。");	
 		}		
 		return makeModel(SUCC_CODE, MSG_SUCC, models);		
@@ -79,8 +106,8 @@ public class LessonController extends BaseController {
 	@ResponseBody			
 	@RequestMapping(value ="/updateLesson", method = RequestMethod.POST)			
 	public BaseModel updateLesson(HttpSession session,  LessonModel Lesson) {			
-				
-		if (TextUtils.isEmpty(Lesson.getLessonID()))  {		
+		System.out.println("updata");		
+		if (TextUtils.isEmpty(Lesson.getAutomataID()))  {		
 			return makeModel(ERROR_CODE, "業務情報を入力してください");	
 		}else {		
 			Lesson.setUpdater(Global.getUserName());	

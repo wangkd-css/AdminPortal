@@ -53,7 +53,7 @@
 					<div class="input-group">
 						<tr>
 							<td><span class="input_tip">课程番号</span></td>
-							<td><input maxlength="50"  type="text" id="lessonID" placeholder="LessonID" class="form-control" readonly="readonly" /></td>
+							<td><input maxlength="50"  type="text" id="automataID" placeholder="automataID" class="form-control" readonly="readonly" /></td>
 						</tr>
 					</div>	
 					<div class="input-group">
@@ -65,7 +65,7 @@
 					<div class="input-group">
 						<tr>
 							<td><span class="input_tip">课程种类</span></td>
-							<td><input maxlength="50"  type="text" id="lessonType" placeholder="lessonType" class="form-control" readonly="readonly" /></td>
+ 							<td><input maxlength="50"  type="text" id="lessonType" placeholder="lessonType" class="form-control" readonly="readonly" /></td>
 						</tr>
 					</div>	
 					<div class="input-group">
@@ -89,7 +89,7 @@
  			       <button type="button" onclick="uploadImage()">Upload Image</button>
 				</form>
 				<div class="modal-footer">
-					<button class="btn btn-info" type="submit" onclick="updateLesson()">
+					<button class="btn btn-info" type="submit" onclick="addLesson()">
 						提交
 					</button>
 				</div>
@@ -150,9 +150,9 @@
 						{{each $data}}
 						<tr>
 <!--							<td>{{$value.customerID}}</td>-->
-							<td>{{$value.lessonID}}</td>
+							<td>{{$value.automataID}}</td>
 							<td>{{$value.lessonName}}</td>
-							<td>{{$value.lessonType}}</td>
+							<td>{{$value.showType}}</td>
 							<td>{{$value.lessonStatus}}</td>
 							<td>{{$value.lessonDeadline}}</td>
 							<td>{{$value.createTime}}</td>
@@ -160,10 +160,10 @@
 							<td>{{$value.updateTime}}</td>
 							<td>{{$value.updater}}</td>
 												<td>
-								<button style="float:left;width:30px;height:30px;" class="btn btn-warning btn-xs" onclick="showUpdateLesson('{{$value.lessonID}}')">
+								<button style="float:left;width:30px;height:30px;" class="btn btn-warning btn-xs" onclick="showUpdateLesson('{{$value.automataID}}')">
 									<i class="ace-icon fa fa-pencil-square-o bigger-230" style="font-size:23px !important;"></i>
 								</button>
-								<button style="float:right;width:30px;height:30px;background-color:#ff0000 !important;border-color:#ff0000;" class="btn btn-warning btn-xs deleteButton" onclick="showDeleteLessonDialog('{{$value.lessonID}}')">
+								<button style="float:right;width:30px;height:30px;background-color:#ff0000 !important;border-color:#ff0000;" class="btn btn-warning btn-xs deleteButton" onclick="showDeleteLessonDialog('{{$value.automataID}}')">
 									<i class="ace-icon fa fa-trash-o fa-2x icon-only"></i>
 								</button>
 							</td>

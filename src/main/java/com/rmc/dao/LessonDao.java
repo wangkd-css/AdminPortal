@@ -14,13 +14,13 @@ import com.rmc.model.LessonModel;
 public interface LessonDao {
 	
 
-	/* public int addLesson(LessonModel Lesson); */
+	public int addLesson(LessonModel Lesson);
 	
-	public List<LessonModel> getLessonList();
+	public List<LessonModel> getLessonList(@Param("userName1") String userName1);
 	
 	/* public int deleteLesson(@Param("LessonID") String LessonID); */
 	
-	public List<LessonModel> getLesson(@Param("LessonID") String LessonID);
+	public List<LessonModel> getLesson(@Param("automataID") String automataID);
 	
 	public int updateLesson(LessonModel Lesson);
 }

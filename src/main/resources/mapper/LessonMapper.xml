@@ -3,15 +3,16 @@
 <mapper namespace="com.rmc.dao.LessonDao">
 
 	<!-- insert -->
-<!-- 	<insert id="addLesson">
+ 	<insert id="addLesson">
 		insert into
-		LessonTable(CustomerID,LessonID,lessonName,lessonType,CreateTime,Creater,UpdateTime,Updater)
-		values(#{customerID},#{lessonID},#{lessonName},#{lessonType},#{createTime},#{creater},#{updateTime},#{updater})
-	</insert> -->
+		csstable.lessontable(UserID,LessonID,lessonName,lessonStatus,lessonType,CreateTime,Creater,UpdateTime,Updater)
+		 values(#{userID},#{automataID},#{lessonName},#{status},#{lessonType},#{createTime},#{creater},#{updateTime},#{updater})
+	</insert>
 	
 	<!-- select -->
 	<select id="getLessonList" resultType="com.rmc.model.LessonModel">
-		select * from LessonTable
+		select * from csstable.automata where automata.Status = "未完成" and
+	    AutomataID Not in(select LessonID from csstable.lessontable where UserID = #{userName1})
 	</select>
 	
  	<!-- delete -->
@@ -21,7 +22,7 @@
 	
 	<!-- selectAuto -->
 	<select id="getLesson" resultType="com.rmc.model.LessonModel">
-		select * from LessonTable where LessonID=#{LessonID}
+		select * from csstable.automata where automataID=#{automataID}
 	</select>
 	
 	<!-- update -->

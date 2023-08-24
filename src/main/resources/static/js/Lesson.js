@@ -1,4 +1,4 @@
-var LessonID;
+var automataID;
 
 /*function addLesson() {
 	var CustomerID = $('#customerID').val();
@@ -57,6 +57,7 @@ function permission(){
 }
 
 function Lesson() {
+	var userId = $('#userId').val();
 	var url = URL + "Lesson/LessonList";
 	$.get(url, function(data) {
 		if (data.code == 1) {
@@ -104,11 +105,11 @@ function Lesson() {
 
 
 function showUpdateLesson(id) {
-	var url = URL + "Lesson/getLesson?LessonID=" + id;
+	var url = URL + "Lesson/getLesson?automataID=" + id;
 	$.get(url, function(data) {
 		if (data.code == 1) {
 /*			$('#customerID').val(data.data[0].customerID);*/
-			$('#lessonID').val(data.data[0].lessonID);
+			$('#automataID').val(data.data[0].automataID);
 			$('#lessonName').val(data.data[0].lessonName);
 			$('#lessonType').val(data.data[0].lessonType);
 			$('#lessonStatus').val(data.data[0].lessonStatus);
@@ -119,9 +120,9 @@ function showUpdateLesson(id) {
 	});
 }
 
-function updateLesson() {
+function addLesson() {
 /*	var CustomerID = $('#customerID').val();*/
-	var LessonID = $('#lessonID').val();
+	var automataID = $('#automataID').val();
 	var lessonName = $('#lessonName').val();
 	var lessonType = $('#lessonType').val();
 	var lessonStatus = $('#lessonStatus').val();
@@ -130,7 +131,7 @@ function updateLesson() {
 		alert("お客様番号を入力してください!")
 		return;
 	}*/
-	if (LessonID.length <= 0) {
+	if (automataID.length <= 0) {
 		alert("输入课程番号!")
 		return;
 	}
@@ -150,8 +151,8 @@ function updateLesson() {
 	$.ajax({
         type: "POST",
         dataType: "json",
-        url: URL + "Lesson/updateLesson/",
-		data:{'lessonID':LessonID,'lessonName':lessonName,'lessonType':lessonType,'lessonStatus':lessonStatus},
+        url: URL + "Lesson/addLesson/",
+		data:{'automataID':automataID,'lessonName':lessonName,'lessonType':lessonType,'lessonStatus':lessonStatus},
 /*		data:{'customerID':CustomerID,'lessonID':LessonID,'lessonName':lessonName,'lessonType':lessonType},*/
         success: function (data) {
             if (data.code == 0) {
