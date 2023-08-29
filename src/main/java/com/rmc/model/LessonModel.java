@@ -55,13 +55,12 @@ public class LessonModel {
     	this.automataName = automataName;
     }
     
-    public int getLessonType() {
+    public int getAutomataType() {
 		return automataType;
 	}
 
-	public void setLessonType(int automataType) {
+	public void setAutomataType(int automataType) {
 		this.automataType = automataType;
-		System.out.println("type:" + automataType);
 	}
 
 	

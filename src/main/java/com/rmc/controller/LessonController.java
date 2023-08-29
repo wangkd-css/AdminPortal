@@ -65,7 +65,7 @@ public class LessonController extends BaseController {
 
 		String showType;		
 		for(int i=0;i<models.size();i++) {
-			showType = models.get(i).getComent(models.get(i).getLessonType());
+			showType = models.get(i).getComent(models.get(i).getAutomataType());
 			models.get(i).setShowType(showType);
 		}
 		
@@ -92,21 +92,23 @@ public class LessonController extends BaseController {
 	public BaseModel getLesson(String automataID)  {
 
 		List<LessonModel> models = LessonService.getLesson(automataID);	
-		System.out.println("auto:" + automataID);
-		System.out.println("models:" + models);
 		if (models == null || models.size() == 0) {
-			System.out.println("ｗｈｙ");
-
 			return makeModel(ERROR_CODE, "業務番号を確認ください。");	
-		}		
+		}
+
+		String showType;		
+		for(int i=0;i<models.size();i++) {
+			showType = models.get(i).getComent(models.get(i).getAutomataType());
+			models.get(i).setShowType(showType);
+		}
+
 		return makeModel(SUCC_CODE, MSG_SUCC, models);		
 				
 	}			
 				
 	@ResponseBody			
 	@RequestMapping(value ="/updateLesson", method = RequestMethod.POST)			
-	public BaseModel updateLesson(HttpSession session,  LessonModel Lesson) {			
-		System.out.println("updata");		
+	public BaseModel updateLesson(HttpSession session,  LessonModel Lesson) {					
 		if (TextUtils.isEmpty(Lesson.getAutomataID()))  {		
 			return makeModel(ERROR_CODE, "業務情報を入力してください");	
 		}else {		

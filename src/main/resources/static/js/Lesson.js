@@ -111,7 +111,7 @@ function showUpdateLesson(id) {
 /*			$('#customerID').val(data.data[0].customerID);*/
 			$('#automataID').val(data.data[0].automataID);
 			$('#lessonName').val(data.data[0].lessonName);
-			$('#lessonType').val(data.data[0].lessonType);
+			$('#automataType').val(data.data[0].showType);
 			$('#lessonStatus').val(data.data[0].lessonStatus);
             $('#updateLesson').modal('show');
 		} else {
@@ -124,7 +124,7 @@ function addLesson() {
 /*	var CustomerID = $('#customerID').val();*/
 	var automataID = $('#automataID').val();
 	var lessonName = $('#lessonName').val();
-	var lessonType = $('#lessonType').val();
+	var automataType = $('#automataType').val();
 	var lessonStatus = $('#lessonStatus').val();
 
 /*	if (CustomerID.length <= 0) {
@@ -139,10 +139,16 @@ function addLesson() {
 		alert("输入课程名!")
 		return;
 	}
-	if (lessonType.length <= 0) {
+	if (automataType.length <= 0) {
 		alert("输入课程种类!")
 		return;
 	}
+	if (automataType=="必修") {
+		automataType = "2";
+	}
+	if (automataType=="选修") {
+		automataType = "1";
+	}		
 	if (lessonStatus.length <= 0) {
 		alert("输入课程完成状态!")
 		return;
@@ -152,13 +158,14 @@ function addLesson() {
         type: "POST",
         dataType: "json",
         url: URL + "Lesson/addLesson/",
-		data:{'automataID':automataID,'lessonName':lessonName,'lessonType':lessonType,'lessonStatus':lessonStatus},
+		data:{'automataID':automataID,'lessonName':lessonName,'automataType':automataType,'lessonStatus':lessonStatus},
 /*		data:{'customerID':CustomerID,'lessonID':LessonID,'lessonName':lessonName,'lessonType':lessonType},*/
         success: function (data) {
             if (data.code == 0) {
                 alert(data.msg);
             }
             else{
+				alert("状态更新成功!");
             	window.location.href = "returnLessonList";
             }
         },

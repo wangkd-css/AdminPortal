@@ -5,14 +5,14 @@
 	<!-- insert -->
  	<insert id="addLesson">
 		insert into
-		csstable.lessontable(UserID,LessonID,lessonName,lessonStatus,lessonType,CreateTime,Creater,UpdateTime,Updater)
-		 values(#{userID},#{automataID},#{lessonName},#{status},#{lessonType},#{createTime},#{creater},#{updateTime},#{updater})
+		css_schema.lessontable(UserID,LessonID,lessonName,lessonStatus,lessonType,CreateTime,Creater,UpdateTime,Updater)
+		 values(#{userID},#{automataID},#{lessonName},#{status},#{automataType},#{createTime},#{creater},#{updateTime},#{updater})
 	</insert>
 	
 	<!-- select -->
 	<select id="getLessonList" resultType="com.rmc.model.LessonModel">
-		select * from csstable.automata where automata.Status = "未完成" and
-	    AutomataID Not in(select LessonID from csstable.lessontable where UserID = #{userName1})
+		select * from css_schema.automata where automata.Status = "未完成" and
+	    AutomataID Not in(select LessonID from css_schema.lessontable where UserID = #{userName1})
 	</select>
 	
  	<!-- delete -->
@@ -22,7 +22,7 @@
 	
 	<!-- selectAuto -->
 	<select id="getLesson" resultType="com.rmc.model.LessonModel">
-		select * from csstable.automata where automataID=#{automataID}
+		select * from css_schema.automata where automataID=#{automataID}
 	</select>
 	
 	<!-- update -->
