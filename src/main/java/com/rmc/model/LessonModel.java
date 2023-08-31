@@ -77,7 +77,6 @@ public class LessonModel {
 	
 	
 	public String getShowType() {
-	   	System.out.println("type:" + showType);
 		return showType;
 	}
 
