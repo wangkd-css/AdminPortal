@@ -112,4 +112,13 @@ public class AutomataModel {
 		 */
 		return showType;
 	}
+    private String UserID;
+
+	public String getUserID() {
+		return UserID;
+	}
+
+	public void setUserID(String UserID) {
+		this.UserID = UserID;
+	}
 }

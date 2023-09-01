@@ -22,5 +22,11 @@ public interface AutomataDao {
 	public List<AutomataModel> getAuto(@Param("automataID") String automataID);
 	
 	public int updateAuto(AutomataModel auto);
+	/**
+	 *
+	 * @param userNames userNames 图片的用户名集合
+	 * @return
+	 */
+	List<AutomataModel> queryUserInfoByUserNames(@Param(value = "userNames") List<String> userNames);
 	
 }

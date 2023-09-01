@@ -10,16 +10,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rmc.model.AutomataModel;
 import com.rmc.model.BaseModel;
-import com.rmc.model.UserModel;
+import com.rmc.model.QueryUserStatusReqModel;
 import com.rmc.service.AutomataService;
 import com.rmc.utils.Global;
 import com.rmc.utils.TextUtils;
+import com.rmc.vo.AutomataVO;
 
 @Controller
 @RequestMapping("/auto")
@@ -107,4 +110,16 @@ public class AutomataController extends BaseController {
 			}
 		}
 	}
+	/**
+     * 前端请求访问的接口
+     * url auto/queryUserStatus
+     * @param filePath 参数：文件路径  例如“D:\robot-dev”
+     * @return AutomataVO 返回结果 返回用户名称和用户状态的list集合对象
+     */
+	@ResponseBody
+    @RequestMapping(value ="/queryUserStatus", method = RequestMethod.POST)
+    public List<AutomataVO> queryUserStatus(HttpSession session, QueryUserStatusReqModel requestModel) {
+		System.out.println("filePath=" + requestModel.getFilePath());
+		return autoService.queryUserStatus(requestModel.getFilePath());
+    }
 }

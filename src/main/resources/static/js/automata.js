@@ -149,3 +149,29 @@ function updateAuto() {
     });
 }
 
+function showCheckStatus(id) {
+	$('#automataID').val(id);
+	$('#checkStatus').modal('show');		
+}
+
+function queryUserInfoByUserNames() {	
+    var filePath =  $('#automataID').val();
+    $.ajax({
+		type: "POST",
+		dataType: "json",
+		url: URL + "auto/queryUserStatus",
+		data:{'filePath':filePath},
+		success: function(data) {
+			$("status").children().remove();//清除原有的元素
+			$.each(data, function(item) {//遍历json中每一个单元，随即为“tbody”添加元素
+				$("status").append(         //添加新元素（具体内容不重要）
+			        '<tr>' +
+					'<td>' + item.username + '</td>' +
+					'<td>' + item.userStatus + '</td>' +
+					'</tr>'
+                )
+			});
+		 }
+      });
+}
+
