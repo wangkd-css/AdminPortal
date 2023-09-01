@@ -17,7 +17,7 @@ import com.rmc.model.BaseModel;
 import com.rmc.model.WorkflowModel;
 import com.rmc.service.WorkflowService;
 import com.rmc.utils.TextUtils;
-import com.rmc.vo.ClientVO;
+import com.rmc.vo.AutomataVO;
 
 import javax.annotation.Resource;			
 import java.util.List;				
@@ -55,7 +55,7 @@ public class ClientController extends BaseController {
      */
 	
     @RequestMapping(value ="/queryUserStatus",method = RequestMethod.GET)
-    public List<ClientVO> queryUserStatus(@RequestParam("filePath") String filePath) {
+    public List<AutomataVO> queryUserStatus(@RequestParam("filePath") String filePath) {
         return ClientService.queryUserStatus(filePath);
     }
 }				

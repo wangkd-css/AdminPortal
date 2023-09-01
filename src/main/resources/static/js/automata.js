@@ -156,6 +156,7 @@ function showCheckStatus(id) {
 
 function queryUserInfoByUserNames() {	
     var filePath =  $('#automataID').val();
+    var item = ""
     $.ajax({
 		type: "POST",
 		dataType: "json",
@@ -166,7 +167,7 @@ function queryUserInfoByUserNames() {
 			$.each(data, function(item) {//遍历json中每一个单元，随即为“tbody”添加元素
 				$("status").append(         //添加新元素（具体内容不重要）
 			        '<tr>' +
-					'<td>' + item.username + '</td>' +
+					'<td>' + item.userName + '</td>' +
 					'<td>' + item.userStatus + '</td>' +
 					'</tr>'
                 )

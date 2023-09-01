@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.rmc.dao.ClientDao;
 import com.rmc.model.ClientModel;
-import com.rmc.vo.ClientVO;
+import com.rmc.vo.AutomataVO;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class ClientService {
 	 * @param filePath filePath
 	 * @return
 	 */
-	public List<ClientVO> queryUserStatus(String filePath) {
+	public List<AutomataVO> queryUserStatus(String filePath) {
 		// 获取所有的文件名称
 		List<String> fileNames = getFileNames(filePath);
 		List<String> fileNameArray = new ArrayList<>();
@@ -42,10 +42,10 @@ public class ClientService {
 		for (ClientModel ClientModel : ClientModels) {
 			completeUserName.add(ClientModel.getUserID());
 		}
-		List<ClientVO> ClientVOList = new ArrayList<>();
+		List<AutomataVO> ClientVOList = new ArrayList<>();
 		// 筛选文件夹下的用户是否是数据库中的用户
 		for (String userName : fileNameArray) {
-			ClientVO ClientVO = new ClientVO();
+			AutomataVO ClientVO = new AutomataVO();
 			ClientVO.setUserName(userName);
 			ClientVO.setUserStatus("未完成");
 			// 如果文件夹下的用户是数据库中的用户则用户状态展示已完成

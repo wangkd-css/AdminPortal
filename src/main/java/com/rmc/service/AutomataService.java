@@ -46,7 +46,9 @@ public class AutomataService {
 	 */
 	public List<AutomataVO> queryUserStatus(String filePath) {
 		// 获取所有的文件名称
-		List<String> fileNames = getFileNames(filePath);
+		String fileDir = "C:\\Users\\009740672\\Box\\2023 JAVA模拟\\";
+		String targetDirectory = fileDir + filePath;
+		List<String> fileNames = getFileNames(targetDirectory);
 		List<String> fileNameArray = new ArrayList<>();
 		for (String fileName : fileNames) {
 			// 按照“zhangsan_2023xxx”进行处理
@@ -54,6 +56,7 @@ public class AutomataService {
 			// 获取用户名称
 			fileNameArray.add(split[0]);
 		}
+//		System.out.println("获取数组长度："+fileNameArray.size());
 		// 筛选出已完成作业的用户名称
 		List<AutomataModel> AutomataModels = autodao.queryUserInfoByUserNames(fileNameArray);
 		List<String> completeUserName = new ArrayList<>();
@@ -72,17 +75,18 @@ public class AutomataService {
 			}
 			AutomataVOList.add(AutomataVO);
 		}
+//		System.out.println("获取完成状态长度："+AutomataVOList.size());
 		return AutomataVOList;
 	}
 
 	/**
 	 * 根据文件路径获取文件名称
 	 *
-	 * @param path path
+	 * @param targetDirectory path
 	 * @return
 	 */
-	private List<String> getFileNames(String path) {
-		File file = new File(path);
+	private List<String> getFileNames(String targetDirectory) {
+		File file = new File(targetDirectory);
 		if (!file.exists()) {
 			return null;
 		}

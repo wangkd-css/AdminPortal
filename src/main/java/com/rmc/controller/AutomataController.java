@@ -119,7 +119,7 @@ public class AutomataController extends BaseController {
 	@ResponseBody
     @RequestMapping(value ="/queryUserStatus", method = RequestMethod.POST)
     public List<AutomataVO> queryUserStatus(HttpSession session, QueryUserStatusReqModel requestModel) {
-		System.out.println("filePath=" + requestModel.getFilePath());
+//		System.out.println("filePath=" + requestModel.getFilePath());
 		return autoService.queryUserStatus(requestModel.getFilePath());
     }
 }

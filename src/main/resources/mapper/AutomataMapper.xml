@@ -33,9 +33,9 @@
 	</update>
 	
 	<!--筛选数据中存在的用户信息 -->   
-  	<select id="queryUserInfoByUserNames" parameterType="arraylist" resultType="com.rmc.model.AutomataModel"> 
+  	<select id="queryUserInfoByUserNames" parameterType="java.util.ArrayList" resultType="com.rmc.model.AutomataModel"> 
 <!--  	<select id="queryUserStatus" parameterType="arraylist" resultType="com.rmc.model.AutomataModel"> -->
-        select * from WorkFlow where
+        select * from workflow where
         UserID
         in
         <foreach collection="userNames" item="userName" index="index" open="(" separator="," close=")">
