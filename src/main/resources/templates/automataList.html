@@ -129,29 +129,16 @@
 					<h4 class="modal-title" id="autoTitle">状态查询</h4>
 				</div>
 				
-			<div class="modal-body">
-				<table>
-					<div class="input-group"  >
-						<tr>
-							<td><label class="input_tip">用户名</label></td>
-							<td><label class="input_tip">完成状态</label></td>
-					    </tr>
-					</div>	
-					<div class="input-group" id="status" >
-						<tr>
-							<td></td>
-							<td></td>
-					    </tr>
-					</div>
-					
-				</table>
-				</div>
+			   <div class="modal-body">
+			 	    <table id="statusModal" >
+					</table>
+			   </div>
 				
-				<div class="modal-footer">
-					<button class="btn btn-info" type="button" onclick="queryUserInfoByUserNames()">
-						查询
-					</button>
-				</div>
+			   <div class="modal-footer">
+				    <button class="btn btn-info" type="button" onclick="queryUserInfoByUserNames()">
+					       查询
+				    </button>
+			   </div>
 			</div>
 		</div>
 	</div>
@@ -207,7 +194,6 @@
 								</button>
 							</td>
 							<td>
-<!--								<button type="button" class="blue_btn" onclick="window.location.href = 'checkStatus'">查询</button>-->
 								<button type="button" class="blue_btn" onclick="showCheckStatus('{{$value.automataID}}')">查询</button>
 
 							</td>
