@@ -50,7 +50,7 @@ public class UserController extends BaseController {
 			}
 
 			if (userService.getUserById(user.getUserId()) == null) {
-				user.setPassword(passwordEncoder.encode("admin"));
+				user.setPassword(passwordEncoder.encode(user.getPassword()));
 				int code = userService.addUser(user);
 				if (code == 0) {
 					return makeModel(code, MSG_ADD_ERROR);

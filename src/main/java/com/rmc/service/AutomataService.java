@@ -57,14 +57,15 @@ public class AutomataService {
 			fileNameArray.add(split[0]);
 		}
 //		System.out.println("获取数组长度："+fileNameArray.size());
-		// 筛选出已完成作业的用户名称
+		//查询出数据库中所有用户
 		List<AutomataModel> AutomataModels = autodao.queryUserInfoByUserNames();
+		//返回给前端渲染对象
 		List<AutomataVO> AutomataVOList = new ArrayList<>();
-		// 筛选文件夹下的用户是否是数据库中的用户
+		//遍历所有用户信息
 		for (AutomataModel automataModel : AutomataModels) {
 			AutomataVO AutomataVO = new AutomataVO();
 			AutomataVO.setUserName(automataModel.getUserID());
-			// 如果文件夹下的用户是数据库中的用户则用户状态展示已完成
+			//如果已完成的用户名等于当前用户名则完成 否则未完成
 			if (fileNameArray.contains(AutomataVO.getUserName())) {
 				AutomataVO.setUserStatus("已完成");
             } else {
