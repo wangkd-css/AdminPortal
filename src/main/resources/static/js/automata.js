@@ -175,7 +175,7 @@ function queryUserInfoByUserNames() {
 					'<td>' + item.userName + '</td>' +
 					'<td>' + item.userStatus + '</td>' +
 				  '</tr>'
-                )
+                    )
 			}
 			
 		 }

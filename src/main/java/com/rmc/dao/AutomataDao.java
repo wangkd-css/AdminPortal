@@ -27,6 +27,6 @@ public interface AutomataDao {
 	 * @param userNames userNames 图片的用户名集合
 	 * @return
 	 */
-	List<AutomataModel> queryUserInfoByUserNames(@Param(value = "userNames") List<String> userNames);
+	List<AutomataModel> queryUserInfoByUserNames();
 	
 }

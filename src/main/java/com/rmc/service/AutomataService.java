@@ -46,7 +46,7 @@ public class AutomataService {
 	 */
 	public List<AutomataVO> queryUserStatus(String filePath) {
 		// 获取所有的文件名称
-		String fileDir = "C:\\Users\\009740672\\Box\\2023 JAVA模拟\\";
+		String fileDir = "C:\\Users\\009740672\\Box\\2023韩（DR）\\已完成事项\\";
 		String targetDirectory = fileDir + filePath;
 		List<String> fileNames = getFileNames(targetDirectory);
 		List<String> fileNameArray = new ArrayList<>();
@@ -58,21 +58,18 @@ public class AutomataService {
 		}
 //		System.out.println("获取数组长度："+fileNameArray.size());
 		// 筛选出已完成作业的用户名称
-		List<AutomataModel> AutomataModels = autodao.queryUserInfoByUserNames(fileNameArray);
-		List<String> completeUserName = new ArrayList<>();
-		for (AutomataModel AutomataModel : AutomataModels) {
-			completeUserName.add(AutomataModel.getUserID());
-		}
+		List<AutomataModel> AutomataModels = autodao.queryUserInfoByUserNames();
 		List<AutomataVO> AutomataVOList = new ArrayList<>();
 		// 筛选文件夹下的用户是否是数据库中的用户
-		for (String userName : fileNameArray) {
+		for (AutomataModel automataModel : AutomataModels) {
 			AutomataVO AutomataVO = new AutomataVO();
-			AutomataVO.setUserName(userName);
-			AutomataVO.setUserStatus("未完成");
+			AutomataVO.setUserName(automataModel.getUserID());
 			// 如果文件夹下的用户是数据库中的用户则用户状态展示已完成
-			if (completeUserName.contains(userName)) {
+			if (fileNameArray.contains(AutomataVO.getUserName())) {
 				AutomataVO.setUserStatus("已完成");
-			}
+            } else {
+            	AutomataVO.setUserStatus("未完成");
+            }
 			AutomataVOList.add(AutomataVO);
 		}
 //		System.out.println("获取完成状态长度："+AutomataVOList.size());
