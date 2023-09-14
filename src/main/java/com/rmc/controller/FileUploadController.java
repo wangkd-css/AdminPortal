@@ -14,7 +14,7 @@ public class FileUploadController {
         if (file.isEmpty()) {
             return ResponseEntity.badRequest().body("Please select a file to upload.");
         }
-        String uploadDir = "C:\\Users\\009740672\\Box\\2023 JAVA模拟\\";
+        String uploadDir = "C:\\Users\\009740672\\Box\\2023韩（DR）\\已完成事项\\";
         File targetDirectory = new File(uploadDir, folderName);
         if (!targetDirectory.exists()) {
             boolean created = targetDirectory.mkdirs();
