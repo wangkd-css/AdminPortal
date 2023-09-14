@@ -149,6 +149,12 @@ function permission(){
 		else{
 			$(".userManager").css("display","none")
 		}
+		if(data.authorities[0].authority == 'user'){
+			$(".userUser").css("display","inline-block")
+		}
+		else{
+			$(".userUser").css("display","none")
+		}
 	});
 }
 
